@@ -1,2 +1,2 @@
 # DeveloperBokiDogy
-This is DeveloperBokiDogy repository
+This is DeveloperBokiDogy study repository
