@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "052802ASPTest", "..\..\..\..\我的图片\wxbC#\练习\052802ASPTest\", "{CF848B1D-6BEF-4CDB-9E31-E80DFE5D6107}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.2"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_57954"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\我的图片\wxbC#\练习\052802ASPTest\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_57954\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_57954"
+		Release.AspNetCompiler.PhysicalPath = "..\..\..\..\我的图片\wxbC#\练习\052802ASPTest\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_57954\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "57954"
+		SlnRelativePath = "..\..\..\..\我的图片\wxbC#\练习\052802ASPTest\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CF848B1D-6BEF-4CDB-9E31-E80DFE5D6107}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF848B1D-6BEF-4CDB-9E31-E80DFE5D6107}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
