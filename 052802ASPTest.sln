@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "052802ASPTest", "..\..\..\..\我的图片\wxbC#\练习\052802ASPTest\", "{CF848B1D-6BEF-4CDB-9E31-E80DFE5D6107}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.2"
+		ProjectReferences = "{537ceb0e-f07b-49c9-94c4-4d89fe4497dc}|DBHelper.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_57954"
 		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\我的图片\wxbC#\练习\052802ASPTest\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_57954\"
@@ -25,13 +26,22 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "052802ASPTest", "..\..\..\.
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBHelper", "DBHelper\DBHelper.csproj", "{537CEB0E-F07B-49C9-94C4-4D89FE4497DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{CF848B1D-6BEF-4CDB-9E31-E80DFE5D6107}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CF848B1D-6BEF-4CDB-9E31-E80DFE5D6107}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF848B1D-6BEF-4CDB-9E31-E80DFE5D6107}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF848B1D-6BEF-4CDB-9E31-E80DFE5D6107}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{537CEB0E-F07B-49C9-94C4-4D89FE4497DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{537CEB0E-F07B-49C9-94C4-4D89FE4497DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{537CEB0E-F07B-49C9-94C4-4D89FE4497DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{537CEB0E-F07B-49C9-94C4-4D89FE4497DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

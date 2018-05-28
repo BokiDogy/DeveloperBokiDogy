@@ -38,37 +38,12 @@ namespace DBHelper
         {
             string sql = $@"select count(*) from test_0320emps e where e.empno=:empno and e.sal=:esal";
             List<OracleParameter> paras = new List<OracleParameter>();
-            paras.Add(new OracleParameter(":empno", userid));
-            paras.Add(new OracleParameter(":esal", pwd));
-            OracleDataReader dr = base.ExecuteSelect(sql, paras);
-            Users u = null;
-            while (dr.Read())
-            {
-                u = new Users
-                {
-                    Bak = dr["bak"].ToString(),
-                    Birth = dr["bir"].ToString(),
-                    FaceID = dr["faceid"].ToString(),
-                    Pwd = dr["pwd"].ToString(),
-                    Realname = dr["realname"].ToString(),
-                    Sex = Convert.ToInt32(dr["sex"]),
-                    UserID = dr["userid"].ToString(),
-                    UserName = dr["username"].ToString(),
-                    UserStat = 1
-                };
-                PubDate.U = u;
-            }
-            dr.Close();
-            return u != null ? true : false;
+            paras.Add(new OracleParameter(":empno", empno));
+            paras.Add(new OracleParameter(":esal", sal));
+            object dr = base.GetFirstRowCol(sql, paras);
+            return Convert.ToInt32(dr) >0 ? true : false;
 
 
-
-            //string sql= $@"select u.userid from TEST_MYQQ_USERS u where u.userid=:u and u.pwd=:p";
-            //List<OracleParameter> paras = new List<OracleParameter>();
-            //paras.Add(new OracleParameter(":u", userid));
-            //paras.Add(new OracleParameter(":p", pwd));
-            //string result = base.GetFirstRowCol(sql, paras).ToString();
-            //return result.Length != 0 ? true : false;
         }
     }
 }
