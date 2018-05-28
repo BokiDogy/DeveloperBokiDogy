@@ -18,7 +18,8 @@ public partial class Login : System.Web.UI.Page
         ems = new DBHelper.EmpService();
         if (ems.Login(Convert.ToInt32(txt_empno.Text), txt_sal.Text))
         {
-            lbl_result.Text = "登录成功!";
+
+            Response.Redirect("Index.aspx");
         }
         else
         {
