@@ -12,11 +12,11 @@ public partial class AddEmps : System.Web.UI.Page
     private EmpManager em = new EmpManager();
     protected void Page_Load(object sender, EventArgs e)
     {
-        int eno = Convert.ToInt32(Request.Params["eno"]);
+        int eno = Convert.ToInt32(Request.Params["empno"]);
         string ename = Request.Params["ename"];
         string job = Request.Params["job"];
-        string sal = Request.Params["sal"]; 
-        int deptno = Convert.ToInt32(Request.Params["dno"]);
+        string sal = Request.Params["sal"];
+        int deptno = Convert.ToInt32(Request.Params["Deptno"]);
         Emps emp = new Emps
         {
             Deptno = deptno,
@@ -25,9 +25,12 @@ public partial class AddEmps : System.Web.UI.Page
             Sal = sal,
             Empno = eno
         };
+
         bool result = em.AddEmps(emp);
         Response.ContentType = "text/json;charset=utf-8";
-        Response.Write("{result:"+result+"}");
+        Response.Write("{result:" + result + "}");
         Response.End();
+
+
     }
 }

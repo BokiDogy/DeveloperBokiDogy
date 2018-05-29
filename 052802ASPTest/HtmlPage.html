@@ -29,12 +29,12 @@
 
 			function loaddata() {
 				auvdefault = {
-					empno: "",
-					ename: "",
-					job: "",
-					sal: "",
+					Empno: "",
+					Ename: "",
+					Job: "",
+					Sal: "",
 					depts: [],
-					Deptno: ""
+					Deptno: 0
 				}
 				v = new Vue({
 					el: "#vue",
@@ -44,35 +44,23 @@
 					},
 					created: allquery,
 					methods: {
-						serbyname: function() {
+						serch: function() {
 							let a = this;
 							$.ajax({
 								type: "get",
-								url: urlhead + 'QueryByEnameEmp',
+								url: "/QueryEmps.aspx/",
 								async: true,
 								data: {
-									ename: a.search
+									serch: a.search
 								},
 								success: (respons) => this.emps = respons
-							});
-						},
-						serbyid: function() {
-							let a = this;
-							$.ajax({
-								type: "get",
-								url: urlhead + 'QueryByEmpNo',
-								async: true,
-								data: {
-									empno: a.search
-								},
-								success: (respons) => this.emps = [respons]
 							});
 						},
 						del: function(empno) {
 							if(confirm("是否要删除这名员工？")) {
 								$.ajax({
 									type: "get",
-									url: urlhead + 'DeleteByEmpNo',
+									url: "/DeleteEmpByEmpno.aspx/",
 									async: true,
 									data: {
 										empno: empno
@@ -84,20 +72,26 @@
 						modi: function(eno) {
 							ismodi = 1;
 							$("#mymodal").modal("toggle");
-							let a;
-							this.emps.forEach((x) => a = x.empno == eno ? x : a);
-							$.extend(auv.em, a);
+							let a=null;
+							this.emps.forEach((x) => a = x.Empno == eno ? x : a);
+							$.extend(true, auv.em, a);
 							$.ajax({
 								type: "get",
 								url: "/GetAllDept.aspx/",
 								async: true,
-								success: (t) => auv.em.depts = t
+								success: (t) => {auv.em.depts = t;auv.em.Deptno = a.Deptno;}
 							});
-							auv.em.Deptno = a.dept.Deptno;
 						},
 						adddefalt: function() {
 							ismodi = 0;
-							auv.em = auvdefault;
+							auv.em = {
+								Empno: "",
+								Ename: "",
+								Job: "",
+								Sal: "",
+								depts: [],
+								Deptno: 0
+							};
 							$("#mymodal").modal("toggle");
 							$.ajax({
 								type: "get",
@@ -120,13 +114,13 @@
 					methods: {
 						add: function() {
 							let a = this.em;
-							let u = ismodi == 0 ?'/AddEmps.aspx/' : 'UpdateEmpController';
+							let u = ismodi == 0 ? '/AddEmps.aspx/' : '/UpdateEmps.aspx/';
 							$.ajax({
 								type: "post",
-								url:  u,
+								url: u,
 								async: true,
 								data: a,
-								success:allquery()
+								success: allquery()
 							});
 						}
 					}
@@ -138,8 +132,8 @@
 					type: "get",
 					url: urlhead,
 					async: true,
-					success: (respons) => {v.emps = respons;
-					console.log(typeof v.emps)}
+					success: (respons) => v.emps = respons
+
 				});
 			}
 			//点击全选
@@ -174,8 +168,8 @@
 						<td>{{e.Job}}</td>
 						<td>{{e.Sal}}</td>
 						<td>{{e.Dname}}</td>
-						<td><input type="button" value="修改" v-on:click="modi(e.empno)"> &nbsp;&nbsp;
-							<input type="button" value="删除" v-on:click="del(e.empno)"></td>
+						<td><input type="button" value="修改" v-on:click="modi(e.Empno)"> &nbsp;&nbsp;
+							<input type="button" value="删除" v-on:click="del(e.Empno)"></td>
 					</tr>
 
 				</tbody>
@@ -183,8 +177,7 @@
 			<input type="button" value="新增" id="add" style="width: 80px;" v-on:click="adddefalt()" />
 			<input type="button" value="全部删除" id="alldel" style="width: 80px;" v-on:click="alldel()" />
 			<input type="text" id="serchtxt" size="30" value="" v-model="search" placeholder="请输入查询条件" />
-			<input type="button" value="按员工号查询" id="serbyid" style="width: 100px;" v-on:click="serbyid()" />
-			<input type="button" value="按姓名查询" id="serbyname" style="width: 100px;" v-on:click="serbyname()" />
+			<input type="button" value="模糊查询" id="serbyid" style="width: 100px;" v-on:click="serch()" />
 		</div>
 		<div class="container">
 			<!--			<button class="btn btn-primary" type="button" id="btn">点击我</button>
@@ -202,10 +195,10 @@
 							</div>
 							<div class="modal-body">
 								<form id="bd">
-									<p>员工编号: <input type="text" name="empno" id="empno" value="" v-model="em.empno" /></p>
-									<p>员工姓名: <input type="text" name="ename" id="ename" value="" v-model="em.ename" /></p>
-									<p>职位:&emsp;&emsp; <input type="text" name="job" id="job" value="" v-model="em.job" /></p>
-									<p>工资:&emsp;&emsp; <input type="text" name="sal" id="sal" value="" v-model="em.sal" /></p>
+									<p>员工编号: <input type="text" name="empno" id="empno" value="" v-model="em.Empno" /></p>
+									<p>员工姓名: <input type="text" name="ename" id="ename" value="" v-model="em.Ename" /></p>
+									<p>职位:&emsp;&emsp; <input type="text" name="job" id="job" value="" v-model="em.Job" /></p>
+									<p>工资:&emsp;&emsp; <input type="text" name="sal" id="sal" value="" v-model="em.Sal" /></p>
 									<p>部门:&emsp;&emsp;
 										<select name="Deptno" id="deptname" v-model="em.Deptno">
 											<option v-for="(d,i) in em.depts" :value="d.Deptno">{{d.Dname}}</option>

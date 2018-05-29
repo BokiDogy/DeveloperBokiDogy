@@ -14,7 +14,7 @@ public partial class GetAllDept : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         List<Dept> listde = dm.GetAllDept();
-        Response.ContentType = "text/jason;charset=utf-8";
+        Response.ContentType = "text/json;charset=utf-8";
         string json = JsonConvert.SerializeObject(listde);
         Response.Write(json);
         Response.End();
