@@ -22,7 +22,7 @@
 		<script type="text/javascript">
 			var auvdefault;
 			var ismodi = 0;
-			var urlhead = "/JKTest.aspx/";
+			var urlhead = "/GetAllEmps.aspx/";
 			var v;
 			var auv;
 			window.onload = loaddata;
@@ -34,7 +34,7 @@
 					job: "",
 					sal: "",
 					depts: [],
-					deptno: ""
+					Deptno: ""
 				}
 				v = new Vue({
 					el: "#vue",
@@ -89,11 +89,11 @@
 							$.extend(auv.em, a);
 							$.ajax({
 								type: "get",
-								url: urlhead + "QueryAllDept",
+								url: "/GetAllDept.aspx/",
 								async: true,
 								success: (t) => auv.em.depts = t
 							});
-							auv.em.deptno = a.dept.deptno;
+							auv.em.Deptno = a.dept.Deptno;
 						},
 						adddefalt: function() {
 							ismodi = 0;
@@ -101,11 +101,12 @@
 							$("#mymodal").modal("toggle");
 							$.ajax({
 								type: "get",
-								url: urlhead + "QueryAllDept",
+								url: "/GetAllDept.aspx/",
 								async: true,
 								success: (t) => {
 									auv.em.depts = t;
-									auv.em.deptno = t[0].deptno;
+									console.log(typeof auv.em.depts);
+									auv.em.Deptno = t[0].Deptno;
 								}
 							});
 						}
@@ -119,7 +120,7 @@
 					methods: {
 						add: function() {
 							let a = this.em;
-							let u = ismodi == 0 ?'/AddEmps.aspx' : 'UpdateEmpController';
+							let u = ismodi == 0 ?'/AddEmps.aspx/' : 'UpdateEmpController';
 							$.ajax({
 								type: "post",
 								url:  u,
@@ -137,7 +138,8 @@
 					type: "get",
 					url: urlhead,
 					async: true,
-					success: (respons) => v.emps = respons
+					success: (respons) => {v.emps = respons;
+					console.log(typeof v.emps)}
 				});
 			}
 			//点击全选
@@ -205,8 +207,8 @@
 									<p>职位:&emsp;&emsp; <input type="text" name="job" id="job" value="" v-model="em.job" /></p>
 									<p>工资:&emsp;&emsp; <input type="text" name="sal" id="sal" value="" v-model="em.sal" /></p>
 									<p>部门:&emsp;&emsp;
-										<select name="deptno" id="deptname" v-model="em.deptno">
-											<option v-for="(d,i) in em.depts" :value="d.deptno">{{d.dname}}</option>
+										<select name="Deptno" id="deptname" v-model="em.Deptno">
+											<option v-for="(d,i) in em.depts" :value="d.Deptno">{{d.Dname}}</option>
 										</select>
 									</p>
 								</form>
