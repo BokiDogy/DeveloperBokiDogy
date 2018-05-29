@@ -2,4 +2,3 @@ D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\AspTestModel\bin\Debug\AspT
 D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\AspTestModel\bin\Debug\AspTestModel.pdb
 D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\AspTestModel\obj\Debug\AspTestModel.dll
 D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\AspTestModel\obj\Debug\AspTestModel.pdb
-D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\AspTestModel\obj\Debug\AspTestModel.csprojResolveAssemblyReference.cache

@@ -119,10 +119,10 @@
 					methods: {
 						add: function() {
 							let a = this.em;
-							let u = ismodi == 0 ? 'AddEmpController' : 'UpdateEmpController';
+							let u = ismodi == 0 ?'/AddEmps.aspx' : 'UpdateEmpController';
 							$.ajax({
 								type: "post",
-								url: urlhead + u,
+								url:  u,
 								async: true,
 								data: a,
 								success:allquery()
