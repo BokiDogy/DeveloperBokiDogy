@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DBHelper
+namespace AspTest.DAl
 {
      public class OracleHelper
     {

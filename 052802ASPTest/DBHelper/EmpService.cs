@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Oracle.ManagedDataAccess.Client;
+using AspTest.Model;
 
-
-namespace DBHelper
+namespace AspTest.DAl
 {
     public class EmpService : OracleHelper
     {

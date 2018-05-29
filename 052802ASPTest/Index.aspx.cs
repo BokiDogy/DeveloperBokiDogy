@@ -1,31 +1,39 @@
-﻿using DBHelper;
+﻿using AspTest.Manager;
+using AspTest.Model;
 using System;
 using System.Collections.Generic;
 
 public partial class Index : System.Web.UI.Page
 {
-    private DBHelper.EmpService es = new EmpService();
-    private DeptService ds = new DeptService();
+    private EmpManager em = new EmpManager();
+    private DeptManager ds = new DeptManager();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        try
         {
-            List<Emps> listem = es.GetAllEmps();
-            gv_emps.DataSource = listem;
-            gv_emps.DataBind();
+            if (!IsPostBack)
+            {
+                List<Emps> listem = em.GetAllEmps();
+                gv_emps.DataSource = listem;
+                gv_emps.DataBind();
 
-            List<Dept> listde = ds.GetAllDept();
-            ddl_dept.DataSource = listde;
-            ddl_dept.DataTextField = "dname";
-            ddl_dept.DataValueField = "deptno";
-            ddl_dept.DataBind();
+                List<Dept> listde = ds.GetAllDept();
+                ddl_dept.DataSource = listde;
+                ddl_dept.DataTextField = "dname";
+                ddl_dept.DataValueField = "deptno";
+                ddl_dept.DataBind();
 
+            }
+        }
+       catch(Exception ex)
+        {
+            Response.Write(ex.Message);
         }
     }
 
     protected void btn_serch_Click(object sender, EventArgs e)
     {
-        List<Emps> listem = es.GetResultEmps(txt_serch.Text);
+        List<Emps> listem = em.GetResultEmps(txt_serch.Text);
         gv_emps.DataSource = listem;
         gv_emps.DataBind();
     }
@@ -44,13 +52,13 @@ public partial class Index : System.Web.UI.Page
     protected void gv_emps_RowDeleting(object sender, System.Web.UI.WebControls.GridViewDeleteEventArgs e)
     {
         int eno = Convert.ToInt32(gv_emps.Rows[e.RowIndex].Cells[2].Text);
-        bool result = es.DeleteEmps(eno);
+        bool result = em.DeleteEmps(eno);
         try
         {
             if (result)
             {
                 lb_test.Text = "删除成功";
-                List<Emps> listem = es.GetAllEmps();
+                List<Emps> listem = em.GetAllEmps();
                 gv_emps.DataSource = listem;
                 gv_emps.DataBind();
             }
@@ -84,11 +92,11 @@ public partial class Index : System.Web.UI.Page
         };
         try
         {
-            bool result = es.AddEmps(emp);
+            bool result = em.AddEmps(emp);
             if (result)
             {
                 lb_test.Text = "添加成功";
-                List<Emps> listem = es.GetAllEmps();
+                List<Emps> listem = em.GetAllEmps();
                 gv_emps.DataSource = listem;
                 gv_emps.DataBind();
             }

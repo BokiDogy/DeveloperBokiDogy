@@ -6,7 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "052802ASPTest", ".", "{55FBD6EE-DF90-4838-824A-7B221B965BA3}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
-		ProjectReferences = "{537ceb0e-f07b-49c9-94c4-4d89fe4497dc}|DBHelper.dll;"
+		ProjectReferences = "{087231c9-da1e-4bbc-a942-062ba4637463}|AspTestManager.dll;{e2f4f029-2b77-4bb3-8624-11f6149a5a50}|AspTestModel.dll;{537CEB0E-F07B-49C9-94C4-4D89FE4497DC}|AspTestDAl.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_13666"
 		Debug.AspNetCompiler.PhysicalPath = "..\052802ASPTest\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_13666\"
@@ -25,7 +25,11 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "052802ASPTest", ".", "{55FB
 		SlnRelativePath = "..\052802ASPTest\"
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBHelper", "DBHelper\DBHelper.csproj", "{537CEB0E-F07B-49C9-94C4-4D89FE4497DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspTestDAL", "DBHelper\AspTestDAL.csproj", "{537CEB0E-F07B-49C9-94C4-4D89FE4497DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspTestModel", "..\AspTestModel\AspTestModel.csproj", "{E2F4F029-2B77-4BB3-8624-11F6149A5A50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspTestManager", "AspTestManager\AspTestManager.csproj", "{087231C9-DA1E-4BBC-A942-062BA4637463}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +45,14 @@ Global
 		{537CEB0E-F07B-49C9-94C4-4D89FE4497DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{537CEB0E-F07B-49C9-94C4-4D89FE4497DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{537CEB0E-F07B-49C9-94C4-4D89FE4497DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2F4F029-2B77-4BB3-8624-11F6149A5A50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2F4F029-2B77-4BB3-8624-11F6149A5A50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2F4F029-2B77-4BB3-8624-11F6149A5A50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2F4F029-2B77-4BB3-8624-11F6149A5A50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{087231C9-DA1E-4BBC-A942-062BA4637463}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{087231C9-DA1E-4BBC-A942-062BA4637463}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{087231C9-DA1E-4BBC-A942-062BA4637463}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{087231C9-DA1E-4BBC-A942-062BA4637463}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

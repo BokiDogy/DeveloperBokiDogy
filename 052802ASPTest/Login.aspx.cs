@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class Login : System.Web.UI.Page
 {
-    private DBHelper.EmpService ems;
+    private AspTest.Manager.EmpManager ems=new AspTest.Manager.EmpManager();
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -15,7 +15,6 @@ public partial class Login : System.Web.UI.Page
 
     protected void btn_login_Click(object sender, EventArgs e)
     {
-        ems = new DBHelper.EmpService();
         if (ems.Login(Convert.ToInt32(txt_empno.Text), txt_sal.Text))
         {
 

@@ -1,11 +1,12 @@
-﻿using Oracle.ManagedDataAccess.Client;
+﻿using AspTest.Model;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DBHelper
+namespace AspTest.DAl
 {
     public class DeptService:OracleHelper
     {
