@@ -15,7 +15,7 @@ public partial class GetAllDept : System.Web.UI.Page
     {
         List<Dept> listde = dm.GetAllDept();
         Response.ContentType = "text/json;charset=utf-8";
-        string json = JsonConvert.SerializeObject(listde);
+        string json = CheckKeys.GetData(Request.Headers["kl"], listde);
         Response.Write(json);
         Response.End();
     }

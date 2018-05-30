@@ -45,12 +45,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\AspTestModel\AspTestModel.csproj">
+    <ProjectReference Include="..\AspTestModel\AspTestModel.csproj">
       <Project>{e2f4f029-2b77-4bb3-8624-11f6149a5a50}</Project>
       <Name>AspTestModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\DBHelper\AspTestDAL.csproj">
-      <Project>{537ceb0e-f07b-49c9-94c4-4d89fe4497dc}</Project>
+      <Project>{537CEB0E-F07B-49C9-94C4-4D89FE4497DC}</Project>
       <Name>AspTestDAL</Name>
     </ProjectReference>
   </ItemGroup>

@@ -1,0 +1,22 @@
+d:\用户目录\我的文档\Visual Studio 2015\Projects\053001houseproject\HouseProjectManager\bin\Debug\HouseProjectManager.dll
+d:\用户目录\我的文档\Visual Studio 2015\Projects\053001houseproject\HouseProjectManager\bin\Debug\HouseProjectManager.pdb
+d:\用户目录\我的文档\Visual Studio 2015\Projects\053001houseproject\HouseProjectManager\bin\Debug\HouseProjectDAL.dll
+d:\用户目录\我的文档\Visual Studio 2015\Projects\053001houseproject\HouseProjectManager\bin\Debug\HouseProjectModel.dll
+d:\用户目录\我的文档\Visual Studio 2015\Projects\053001houseproject\HouseProjectManager\bin\Debug\Oracle.ManagedDataAccess.dll
+d:\用户目录\我的文档\Visual Studio 2015\Projects\053001houseproject\HouseProjectManager\bin\Debug\HouseProjectDAL.pdb
+d:\用户目录\我的文档\Visual Studio 2015\Projects\053001houseproject\HouseProjectManager\bin\Debug\HouseProjectModel.pdb
+d:\用户目录\我的文档\Visual Studio 2015\Projects\053001houseproject\HouseProjectManager\obj\Debug\HouseProjectManager.csprojResolveAssemblyReference.cache
+d:\用户目录\我的文档\Visual Studio 2015\Projects\053001houseproject\HouseProjectManager\obj\Debug\HouseProjectManager.dll
+d:\用户目录\我的文档\Visual Studio 2015\Projects\053001houseproject\HouseProjectManager\obj\Debug\HouseProjectManager.pdb
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\053001houseproject\HouseProjectManager\bin\Debug\HouseProjectManager.dll
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\053001houseproject\HouseProjectManager\bin\Debug\HouseProjectManager.pdb
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\053001houseproject\HouseProjectManager\bin\Debug\HouseProjectDAL.dll
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\053001houseproject\HouseProjectManager\bin\Debug\HouseProjectModel.dll
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\053001houseproject\HouseProjectManager\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\053001houseproject\HouseProjectManager\bin\Debug\HouseProjectDAL.pdb
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\053001houseproject\HouseProjectManager\bin\Debug\HouseProjectModel.pdb
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\053001houseproject\HouseProjectManager\obj\Debug\HouseProjectManager.csprojResolveAssemblyReference.cache
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\053001houseproject\HouseProjectManager\obj\Debug\HouseProjectManager.dll
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\053001houseproject\HouseProjectManager\obj\Debug\HouseProjectManager.pdb
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\053001houseproject\HouseProjectManager\bin\Debug\Newtonsoft.Json.dll
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\053001houseproject\HouseProjectManager\bin\Debug\Newtonsoft.Json.xml

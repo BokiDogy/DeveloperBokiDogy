@@ -1,0 +1,20 @@
+d:\用户目录\我的文档\Visual Studio 2015\Projects\053001houseproject\HouseProjectDAL\obj\Debug\HouseProjectDAL.csprojResolveAssemblyReference.cache
+d:\用户目录\我的文档\Visual Studio 2015\Projects\053001houseproject\HouseProjectDAL\bin\Debug\HouseProjectDAL.dll.config
+d:\用户目录\我的文档\Visual Studio 2015\Projects\053001houseproject\HouseProjectDAL\bin\Debug\HouseProjectDAL.dll
+d:\用户目录\我的文档\Visual Studio 2015\Projects\053001houseproject\HouseProjectDAL\bin\Debug\HouseProjectDAL.pdb
+d:\用户目录\我的文档\Visual Studio 2015\Projects\053001houseproject\HouseProjectDAL\bin\Debug\HouseProjectModel.dll
+d:\用户目录\我的文档\Visual Studio 2015\Projects\053001houseproject\HouseProjectDAL\bin\Debug\Oracle.ManagedDataAccess.dll
+d:\用户目录\我的文档\Visual Studio 2015\Projects\053001houseproject\HouseProjectDAL\bin\Debug\HouseProjectModel.pdb
+d:\用户目录\我的文档\Visual Studio 2015\Projects\053001houseproject\HouseProjectDAL\obj\Debug\HouseProjectDAL.dll
+d:\用户目录\我的文档\Visual Studio 2015\Projects\053001houseproject\HouseProjectDAL\obj\Debug\HouseProjectDAL.pdb
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\053001houseproject\HouseProjectDAL\bin\Debug\HouseProjectDAL.dll.config
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\053001houseproject\HouseProjectDAL\bin\Debug\HouseProjectDAL.dll
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\053001houseproject\HouseProjectDAL\bin\Debug\HouseProjectDAL.pdb
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\053001houseproject\HouseProjectDAL\bin\Debug\HouseProjectModel.dll
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\053001houseproject\HouseProjectDAL\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\053001houseproject\HouseProjectDAL\bin\Debug\HouseProjectModel.pdb
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\053001houseproject\HouseProjectDAL\obj\Debug\HouseProjectDAL.csprojResolveAssemblyReference.cache
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\053001houseproject\HouseProjectDAL\obj\Debug\HouseProjectDAL.dll
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\053001houseproject\HouseProjectDAL\obj\Debug\HouseProjectDAL.pdb
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\053001houseproject\HouseProjectDAL\bin\Debug\Newtonsoft.Json.dll
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\053001houseproject\HouseProjectDAL\bin\Debug\Newtonsoft.Json.xml

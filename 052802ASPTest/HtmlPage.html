@@ -48,18 +48,24 @@
 							let a = this;
 							$.ajax({
 								type: "get",
+								headers: {
+									kl: '2587'
+								},
 								url: "/QueryEmps.aspx/",
 								async: true,
 								data: {
 									serch: a.search
 								},
-								success: (respons) => this.emps = respons
+								success: (respons) => this.emps = respons.data
 							});
 						},
 						del: function(empno) {
 							if(confirm("是否要删除这名员工？")) {
 								$.ajax({
 									type: "get",
+									headers: {
+										kl: '2587'
+									},
 									url: "/DeleteEmpByEmpno.aspx/",
 									async: true,
 									data: {
@@ -72,14 +78,20 @@
 						modi: function(eno) {
 							ismodi = 1;
 							$("#mymodal").modal("toggle");
-							let a=null;
+							let a = null;
 							this.emps.forEach((x) => a = x.Empno == eno ? x : a);
 							$.extend(true, auv.em, a);
 							$.ajax({
 								type: "get",
+								headers: {
+									kl: '2587'
+								},
 								url: "/GetAllDept.aspx/",
 								async: true,
-								success: (t) => {auv.em.depts = t;auv.em.Deptno = a.Deptno;}
+								success: (t) => {
+									auv.em.depts = t.data;
+									auv.em.Deptno = a.Deptno;
+								}
 							});
 						},
 						adddefalt: function() {
@@ -95,12 +107,14 @@
 							$("#mymodal").modal("toggle");
 							$.ajax({
 								type: "get",
+								headers: {
+									kl: '2587'
+								},
 								url: "/GetAllDept.aspx/",
 								async: true,
 								success: (t) => {
-									auv.em.depts = t;
-									console.log(typeof auv.em.depts);
-									auv.em.Deptno = t[0].Deptno;
+									auv.em.depts = t.data;
+									auv.em.Deptno = t.data[0].Deptno;
 								}
 							});
 						}
@@ -117,6 +131,9 @@
 							let u = ismodi == 0 ? '/AddEmps.aspx/' : '/UpdateEmps.aspx/';
 							$.ajax({
 								type: "post",
+								headers: {
+									kl: '2587'
+								},
 								url: u,
 								async: true,
 								data: a,
@@ -131,8 +148,11 @@
 				$.ajax({
 					type: "get",
 					url: urlhead,
+					headers: {
+						kl: '2587'
+					},
 					async: true,
-					success: (respons) => v.emps = respons
+					success: (respons) => v.emps = respons.data
 
 				});
 			}

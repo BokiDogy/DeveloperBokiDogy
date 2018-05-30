@@ -55,7 +55,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\AspTestModel\AspTestModel.csproj">
+    <ProjectReference Include="..\AspTestModel\AspTestModel.csproj">
       <Project>{e2f4f029-2b77-4bb3-8624-11f6149a5a50}</Project>
       <Name>AspTestModel</Name>
     </ProjectReference>

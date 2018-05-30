@@ -14,9 +14,8 @@ public partial class QueryEmps : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         string serch = Request.Params["serch"];
-        List<Emps> listem = em.GetResultEmps(serch);
-        string json = JsonConvert.SerializeObject(listem);
         Response.ContentType = "text/json;charset=utf-8";
+        string json = CheckKeys.GetData(Request.Headers["kl"], em.GetResultEmps(serch));
         Response.Write(json);
         Response.End();
     }

@@ -28,7 +28,8 @@ public partial class UpdateEmps : System.Web.UI.Page
 
         bool result = em.UpdateEmps(emp);
         Response.ContentType = "text/json;charset=utf-8";
-        Response.Write("{result:" + result + "}");
+        string json = CheckKeys.GetData(Request.Headers["kl"], result);
+        Response.Write(json);
         Response.End();
 
     }

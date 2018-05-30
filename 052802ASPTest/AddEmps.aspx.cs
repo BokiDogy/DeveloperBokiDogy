@@ -25,12 +25,10 @@ public partial class AddEmps : System.Web.UI.Page
             Sal = sal,
             Empno = eno
         };
-
         bool result = em.AddEmps(emp);
         Response.ContentType = "text/json;charset=utf-8";
-        Response.Write("{result:" + result + "}");
+        string json = CheckKeys.GetData(Request.Headers["kl"], result);
+        Response.Write(json);
         Response.End();
-
-
     }
 }

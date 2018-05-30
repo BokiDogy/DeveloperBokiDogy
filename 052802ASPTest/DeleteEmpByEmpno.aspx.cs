@@ -15,8 +15,8 @@ public partial class DeleteEmpByEmpno : System.Web.UI.Page
         int eno =Convert.ToInt32(Request.Params["empno"]);
         bool result = em.DeleteEmps(eno);
         Response.ContentType = "text/json;charset=utf-8";
-        Response.Write("{result:" + result + "}");
+        string json = CheckKeys.GetData(Request.Headers["kl"], result);
+        Response.Write(json);
         Response.End();
-
     }
 }
