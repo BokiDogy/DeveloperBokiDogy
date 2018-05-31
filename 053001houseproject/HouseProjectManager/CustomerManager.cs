@@ -19,9 +19,9 @@ namespace HouseProject.Manager
         {
             return cs.GetCustomerById(id);
         }
-        public bool Login(string lname, string pwd)
+        public Customers Login(string lname, string pwd, ref bool result)
         {
-            return cs.Login(lname,pwd);
+            return cs.Login(lname,pwd,ref result);
         }
     }
 }

@@ -20,3 +20,15 @@ D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\053001houseproject\HousePro
 D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\053001houseproject\HouseProjectManager\obj\Debug\HouseProjectManager.pdb
 D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\053001houseproject\HouseProjectManager\bin\Debug\Newtonsoft.Json.dll
 D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\053001houseproject\HouseProjectManager\bin\Debug\Newtonsoft.Json.xml
+D:\用户目录\我的图片\wxbC#\wxbtest\053001houseproject\HouseProjectManager\bin\Debug\HouseProjectManager.dll
+D:\用户目录\我的图片\wxbC#\wxbtest\053001houseproject\HouseProjectManager\bin\Debug\HouseProjectManager.pdb
+D:\用户目录\我的图片\wxbC#\wxbtest\053001houseproject\HouseProjectManager\bin\Debug\HouseProjectDAL.dll
+D:\用户目录\我的图片\wxbC#\wxbtest\053001houseproject\HouseProjectManager\bin\Debug\HouseProjectModel.dll
+D:\用户目录\我的图片\wxbC#\wxbtest\053001houseproject\HouseProjectManager\bin\Debug\Newtonsoft.Json.dll
+D:\用户目录\我的图片\wxbC#\wxbtest\053001houseproject\HouseProjectManager\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\用户目录\我的图片\wxbC#\wxbtest\053001houseproject\HouseProjectManager\bin\Debug\HouseProjectDAL.pdb
+D:\用户目录\我的图片\wxbC#\wxbtest\053001houseproject\HouseProjectManager\bin\Debug\HouseProjectModel.pdb
+D:\用户目录\我的图片\wxbC#\wxbtest\053001houseproject\HouseProjectManager\bin\Debug\Newtonsoft.Json.xml
+D:\用户目录\我的图片\wxbC#\wxbtest\053001houseproject\HouseProjectManager\obj\Debug\HouseProjectManager.csprojResolveAssemblyReference.cache
+D:\用户目录\我的图片\wxbC#\wxbtest\053001houseproject\HouseProjectManager\obj\Debug\HouseProjectManager.dll
+D:\用户目录\我的图片\wxbC#\wxbtest\053001houseproject\HouseProjectManager\obj\Debug\HouseProjectManager.pdb

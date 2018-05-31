@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace HouseProject.DAL
 {
-    public class CustomerService:OracleHelper
+    public class CustomerService : OracleHelper
     {
         public List<Customers> GetAllCustomer()
         {
             string sql = "select * from test_0530customers";
             OracleDataReader dr = base.ExecuteSelect(sql, null);
             List<Customers> listc = new List<Customers>();
-            while(dr.Read())
+            while (dr.Read())
             {
                 Customers c = new Customers();
                 c.CustomerId = Convert.ToInt32(dr["customerid"]);
@@ -42,13 +42,26 @@ namespace HouseProject.DAL
             dr.Close();
             return c;
         }
-        public bool Login(string lname,string pwd)
+        public Customers Login(string lname, string pwd, ref bool result)
         {
-            string sql = "select count(*) from test_0530customers c where c.loginname=:lna and c.pwd=:pd";
+            string sql = "select * from test_0530customers c where c.loginname=:lna and c.pwd=:pd";
             List<OracleParameter> paras = new List<OracleParameter>();
             paras.Add(new OracleParameter(":lna", lname));
             paras.Add(new OracleParameter(":pd", pwd));
-            return Convert.ToInt32(base.GetFirstRowCol(sql, paras)) > 0 ? true : false;
+            Customers c = null;
+            result = false;
+            OracleDataReader dr = base.ExecuteSelect(sql, paras);
+            if (dr.Read())
+            {
+                result = true;
+                c = new Customers
+                {
+                    CustomerId = Convert.ToInt32(dr["customerid"]),
+                    LoginName = dr["loginname"].ToString(),
+                    Pwd = dr["pwd"].ToString()
+                };
+            }
+            return c;
         }
     }
 }
