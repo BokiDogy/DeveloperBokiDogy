@@ -1,0 +1,9 @@
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\060101AssignProject\AssignProjectDAL\bin\Debug\AssignProjectDAL.dll.config
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\060101AssignProject\AssignProjectDAL\bin\Debug\AssignProjectDAL.dll
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\060101AssignProject\AssignProjectDAL\bin\Debug\AssignProjectDAL.pdb
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\060101AssignProject\AssignProjectDAL\bin\Debug\AssignProjectModel.dll
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\060101AssignProject\AssignProjectDAL\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\060101AssignProject\AssignProjectDAL\bin\Debug\AssignProjectModel.pdb
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\060101AssignProject\AssignProjectDAL\obj\Debug\AssignProjectDAL.csprojResolveAssemblyReference.cache
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\060101AssignProject\AssignProjectDAL\obj\Debug\AssignProjectDAL.dll
+D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\060101AssignProject\AssignProjectDAL\obj\Debug\AssignProjectDAL.pdb
