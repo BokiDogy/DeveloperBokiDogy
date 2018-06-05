@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>登录</title>
+		<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$("#btn").click(function() {
+					let sid = $("#textid").val();
+
+					if(!sid.match(/^\d+$/g)) {
+						$("#message").html("请输入数字格式的学号");
+					} else {
+						let d = new Date();
+						$.ajax({
+							type: "get",
+							url: "/interfaces/Login.aspx?timer=" + d.getTime(),
+							async: true,
+							data: {
+								sid: parseInt(sid)
+							},
+							success: (t) => {
+								if(t.result) {
+									sessionStorage.setItem("sid",t.user.Studentid);
+									sessionStorage.setItem("sname",t.user.Studentname);
+									sessionStorage.setItem("srole",t.user.Studentrole);
+									sessionStorage.setItem("cid",t.user.Classid.Classid);
+									if(t.user.Studentrole == 1) {
+										window.location.href = "AddAsign.html?timer=" + d.getTime();
+									} else {
+										window.location.href = "QueryAsignInfo.html?timer=" + d.getTime();
+									}
+								} else {
+									$("#message").html("登录失败，请重新登录");
+									$("#textid").val() = "";
+								}
+							}
+						});
+					}
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="bg">
+			<span id="sid">
+			请输入学号
+		</span>
+			<input type="text" name="textid" id="textid" placeholder="请输入学号" />
+			<span id="message">
+		</span>
+			<br />
+			<input type="button" id="btn" value="登录" />
+		</div>
+
+	</body>
+
+</html>

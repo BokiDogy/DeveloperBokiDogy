@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript">
+			var v;
+			window.onload = function() {
+				v = new Vue({
+					el: "#app",
+					data: {
+						query: {
+							sname:"",
+							cid:0
+						},
+						result: [],
+						allclass: []
+					},
+					created: function() {
+						let that = this;
+						let d = new Date();
+						this.query={
+							sname:"",
+							cid:0
+						};
+						$.ajax({
+							type: "get",
+							url: "/interfaces/GetAllClass.aspx?timer=" + d.getTime(),
+							async: true,
+							success: (t) => {
+								that.allclass = [];
+								for(let k in t.allclass) {
+									that.allclass.push(t.allclass[k])
+								}
+							}
+						});
+					},
+					methods: {
+						serch: function(){
+							let d = new Date();
+							let that=this;
+							let st = (document.getElementById("start").value.length==0 )?( "1990-01-01-00:00" ): (document.getElementById("start").value.replace(/T/, "-"));
+							let en = (document.getElementById("end").value.length==0) ? ("2090-01-01-00:00" ): (document.getElementById("end").value.replace(/T/, "-"));
+							$.ajax({
+								type: "post",
+								url: "/interfaces/QueryAsign.aspx?timer=" + d.getTime(),
+								async: true,
+								data: {
+									sn: that.query["sname"],
+									cid: that.query["cid"],
+									start: st,
+									end: en
+								},
+								success: (t) => {
+									that.result = [];
+									for(let k in t.query) {
+										that.result.push(t.query[k]);
+										console.log(t.query[k]);
+									}
+								}
+							});
+						}
+					}
+				})
+			};
+		</script>
+	</head>
+
+	<body>
+		<h1>学生考勤记录查询</h1>
+		<div id="app">
+
+			<div id="title">
+
+				<span>
+			请输入查找时间：
+		</span>
+				<span>
+			开始时间：
+		</span>
+				<input type="datetime-local" name="dc" id="start" value="" />
+				<span>
+			结束时间：
+		</span>
+				<input type="datetime-local" name="dc" id="end" value="" />
+			</div>
+			<div id="md">
+				<span>
+				班级:
+			</span>
+				<select name="" v-model="query.cid">
+					<option v-for="(item,i) in allclass" :value="item.Classid">{{item.Classname}}</option>
+				</select>
+				<span>
+				姓名
+			</span>
+				<input type="text" id="" value="" placeholder="请输入姓名" v-model="query.sname" />
+			</div>
+			<div id="mid2">
+				<input type="button" id="" value="查询" v-on:click="serch" />
+				<input type="button" name="" id="" value="退出" />
+			</div>
+			<div id="table">
+				<table width="1000" border="1">
+					<thead>
+						<tr>
+							<td>签到学生</td>
+							<td>签到时间</td>
+							<td>签到标记</td>
+							<td>签到备注</td>
+							<td>所属班级</td>
+							<td>所属班级老师</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="(d,i) in result">
+							<td>{{d.Studentname}}</td>
+							<td>{{d.Assigntime}}</td>
+							<td>{{d.Assigntag==1?'签到':'签退'}}</td>
+							<td>{{d.Assigndesc}}</td>
+							<td>{{d.Classinfo.Classname}}</td>
+							<td>{{d.Classinfo.Teacher}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</body>
+
+</html>

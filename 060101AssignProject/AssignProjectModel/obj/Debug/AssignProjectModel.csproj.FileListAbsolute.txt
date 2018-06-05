@@ -1,4 +1,0 @@
-D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\060101AssignProject\AssignProjectModel\bin\Debug\AssignProjectModel.dll
-D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\060101AssignProject\AssignProjectModel\bin\Debug\AssignProjectModel.pdb
-D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\060101AssignProject\AssignProjectModel\obj\Debug\AssignProjectModel.dll
-D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\060101AssignProject\AssignProjectModel\obj\Debug\AssignProjectModel.pdb
