@@ -10,22 +10,33 @@ namespace HouseProject.DAL
 {
     public class HouseService:OracleHelper
     {
+        //public List<House> GetAllHouse()
+        //{
+        //    string sql = "select * from test_0530houses";
+        //    OracleDataReader dr = base.ExecuteSelect(sql, null);
+        //    List<House> listh = new List<House>();
+        //    while(dr.Read())
+        //    {
+        //        House h = new House();
+        //        CustomerService cs = new CustomerService();
+        //        h.Addr = dr["addr"].ToString();
+        //        h.Area = Convert.ToInt32(dr["area"]);
+        //        h.HouseId = Convert.ToInt32(dr["houseid"]);
+        //        h.HouseTypeName = dr["housetypename"].ToString();
+        //        h.Customer = cs.GetCustomerById(Convert.ToInt32(dr["customerid"]));
+        //        listh.Add(h);
+        //    }
+        //    dr.Close();
+        //    return listh;
+        //}
+
+
         public List<House> GetAllHouse()
         {
-            string sql = "select * from test_0530houses";
+            string sql = "select h.houseid,h.housetypename,h.area,h.addr,c.* from test_0530houses h inner join test_0530customers c on h.customerid=c.customerid";
             OracleDataReader dr = base.ExecuteSelect(sql, null);
-            List<House> listh = new List<House>();
-            while(dr.Read())
-            {
-                House h = new House();
-                CustomerService cs = new CustomerService();
-                h.Addr = dr["addr"].ToString();
-                h.Area = Convert.ToInt32(dr["area"]);
-                h.HouseId = Convert.ToInt32(dr["houseid"]);
-                h.HouseTypeName = dr["housetypename"].ToString();
-                h.Customer = cs.GetCustomerById(Convert.ToInt32(dr["customerid"]));
-                listh.Add(h);
-            }
+            List<House> listh = CreateModelByDataReader<House>(dr);
+            
             dr.Close();
             return listh;
         }
