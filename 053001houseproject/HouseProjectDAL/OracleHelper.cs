@@ -108,7 +108,6 @@ namespace HouseProject.DAL
         }
 
 
-
         protected ArrayList CreateModelByDataReader(OracleDataReader dr, string classname)
         {
             DataTable dt = dr.GetSchemaTable();
@@ -138,7 +137,7 @@ namespace HouseProject.DAL
                 }
                 result.Add(ob);
             }
-            dr.Close();
+            //dr.Close();
             return result;
         }
 
@@ -151,9 +150,10 @@ namespace HouseProject.DAL
             {
                 columns.Add(row["ColumnName"].ToString().ToUpper(), row["DataType"].ToString().ToUpper());
             }
-            Type tt = typeof(T);
-            string classname = Regex.Split((tt.FullName + "," + tt.Assembly.ManifestModule.Name), ".dll")[0];
-            Type pt = Type.GetType(classname);
+            //Type tt = typeof(T);
+            //string classname = Regex.Split((tt.FullName + "," + tt.Assembly.ManifestModule.Name), ".dll")[0];
+            //Type pt = Type.GetType(classname);
+            Type pt = typeof(T);
             while (dr.Read())
             {
                 object ob = getObjValueInColumns(dr, columns, pt);
@@ -173,8 +173,15 @@ namespace HouseProject.DAL
                 bool isincolumns = isKey(p.Name.ToUpper(), columns);
                 if (isincolumns)
                 {
-                    object value = GetObjByType(ptt.Name, dr[p.Name.ToLower()]);
-                    p.SetValue(obj, value);
+                    if (dr[p.Name.ToLower()].GetType().Name.ToLower() == "dbnull")
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        object value = GetObjByType(ptt.Name, dr[p.Name.ToLower()]);
+                        p.SetValue(obj, value);
+                    }
                 }
                 else
                 {

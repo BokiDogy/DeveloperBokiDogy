@@ -15,3 +15,10 @@ D:\用户目录\我的图片\wxbC#\wxbtest\053001houseproject\HouseProjectModel\
 D:\用户目录\我的图片\wxbC#\wxbtest\053001houseproject\HouseProjectModel\bin\Debug\Newtonsoft.Json.xml
 D:\用户目录\我的图片\wxbC#\wxbtest\053001houseproject\HouseProjectModel\obj\Debug\HouseProjectModel.dll
 D:\用户目录\我的图片\wxbC#\wxbtest\053001houseproject\HouseProjectModel\obj\Debug\HouseProjectModel.pdb
+F:\vsgit\DeveloperBokiDogy\053001houseproject\HouseProjectModel\bin\Debug\HouseProjectModel.dll
+F:\vsgit\DeveloperBokiDogy\053001houseproject\HouseProjectModel\bin\Debug\HouseProjectModel.pdb
+F:\vsgit\DeveloperBokiDogy\053001houseproject\HouseProjectModel\bin\Debug\Newtonsoft.Json.dll
+F:\vsgit\DeveloperBokiDogy\053001houseproject\HouseProjectModel\bin\Debug\Newtonsoft.Json.xml
+F:\vsgit\DeveloperBokiDogy\053001houseproject\HouseProjectModel\obj\Debug\HouseProjectModel.csprojResolveAssemblyReference.cache
+F:\vsgit\DeveloperBokiDogy\053001houseproject\HouseProjectModel\obj\Debug\HouseProjectModel.dll
+F:\vsgit\DeveloperBokiDogy\053001houseproject\HouseProjectModel\obj\Debug\HouseProjectModel.pdb

@@ -32,3 +32,15 @@ D:\用户目录\我的图片\wxbC#\wxbtest\053001houseproject\HouseProjectManage
 D:\用户目录\我的图片\wxbC#\wxbtest\053001houseproject\HouseProjectManager\obj\Debug\HouseProjectManager.csprojResolveAssemblyReference.cache
 D:\用户目录\我的图片\wxbC#\wxbtest\053001houseproject\HouseProjectManager\obj\Debug\HouseProjectManager.dll
 D:\用户目录\我的图片\wxbC#\wxbtest\053001houseproject\HouseProjectManager\obj\Debug\HouseProjectManager.pdb
+F:\vsgit\DeveloperBokiDogy\053001houseproject\HouseProjectManager\bin\Debug\HouseProjectManager.dll
+F:\vsgit\DeveloperBokiDogy\053001houseproject\HouseProjectManager\bin\Debug\HouseProjectManager.pdb
+F:\vsgit\DeveloperBokiDogy\053001houseproject\HouseProjectManager\bin\Debug\HouseProjectDAL.dll
+F:\vsgit\DeveloperBokiDogy\053001houseproject\HouseProjectManager\bin\Debug\HouseProjectModel.dll
+F:\vsgit\DeveloperBokiDogy\053001houseproject\HouseProjectManager\bin\Debug\Newtonsoft.Json.dll
+F:\vsgit\DeveloperBokiDogy\053001houseproject\HouseProjectManager\bin\Debug\Oracle.ManagedDataAccess.dll
+F:\vsgit\DeveloperBokiDogy\053001houseproject\HouseProjectManager\bin\Debug\HouseProjectDAL.pdb
+F:\vsgit\DeveloperBokiDogy\053001houseproject\HouseProjectManager\bin\Debug\HouseProjectModel.pdb
+F:\vsgit\DeveloperBokiDogy\053001houseproject\HouseProjectManager\bin\Debug\Newtonsoft.Json.xml
+F:\vsgit\DeveloperBokiDogy\053001houseproject\HouseProjectManager\obj\Debug\HouseProjectManager.csprojResolveAssemblyReference.cache
+F:\vsgit\DeveloperBokiDogy\053001houseproject\HouseProjectManager\obj\Debug\HouseProjectManager.dll
+F:\vsgit\DeveloperBokiDogy\053001houseproject\HouseProjectManager\obj\Debug\HouseProjectManager.pdb
