@@ -7,3 +7,12 @@ D:\用户目录\我的图片\wxbC#\练习\061101HouseInfoProject\HouseInfoProjec
 D:\用户目录\我的图片\wxbC#\练习\061101HouseInfoProject\HouseInfoProjectDAL\bin\Debug\HouseInfoProjectModel.pdb
 D:\用户目录\我的图片\wxbC#\练习\061101HouseInfoProject\HouseInfoProjectDAL\obj\Debug\HouseInfoProjectDAL.dll
 D:\用户目录\我的图片\wxbC#\练习\061101HouseInfoProject\HouseInfoProjectDAL\obj\Debug\HouseInfoProjectDAL.pdb
+F:\vsgit\DeveloperBokiDogy\061101HouseInfoProject\HouseInfoProjectDAL\bin\Debug\HouseInfoProjectDAL.dll.config
+F:\vsgit\DeveloperBokiDogy\061101HouseInfoProject\HouseInfoProjectDAL\bin\Debug\HouseInfoProjectDAL.dll
+F:\vsgit\DeveloperBokiDogy\061101HouseInfoProject\HouseInfoProjectDAL\bin\Debug\HouseInfoProjectDAL.pdb
+F:\vsgit\DeveloperBokiDogy\061101HouseInfoProject\HouseInfoProjectDAL\bin\Debug\HouseInfoProjectModel.dll
+F:\vsgit\DeveloperBokiDogy\061101HouseInfoProject\HouseInfoProjectDAL\bin\Debug\Oracle.ManagedDataAccess.dll
+F:\vsgit\DeveloperBokiDogy\061101HouseInfoProject\HouseInfoProjectDAL\bin\Debug\HouseInfoProjectModel.pdb
+F:\vsgit\DeveloperBokiDogy\061101HouseInfoProject\HouseInfoProjectDAL\obj\Debug\HouseInfoProjectDAL.csprojResolveAssemblyReference.cache
+F:\vsgit\DeveloperBokiDogy\061101HouseInfoProject\HouseInfoProjectDAL\obj\Debug\HouseInfoProjectDAL.dll
+F:\vsgit\DeveloperBokiDogy\061101HouseInfoProject\HouseInfoProjectDAL\obj\Debug\HouseInfoProjectDAL.pdb
