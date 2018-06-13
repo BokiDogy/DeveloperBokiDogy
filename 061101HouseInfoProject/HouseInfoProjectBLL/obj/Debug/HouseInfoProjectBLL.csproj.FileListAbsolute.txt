@@ -1,0 +1,10 @@
+D:\用户目录\我的图片\wxbC#\练习\061101HouseInfoProject\HouseInfoProjectBLL\bin\Debug\HouseInfoProjectBLL.dll
+D:\用户目录\我的图片\wxbC#\练习\061101HouseInfoProject\HouseInfoProjectBLL\bin\Debug\HouseInfoProjectBLL.pdb
+D:\用户目录\我的图片\wxbC#\练习\061101HouseInfoProject\HouseInfoProjectBLL\obj\Debug\HouseInfoProjectBLL.csprojResolveAssemblyReference.cache
+D:\用户目录\我的图片\wxbC#\练习\061101HouseInfoProject\HouseInfoProjectBLL\obj\Debug\HouseInfoProjectBLL.dll
+D:\用户目录\我的图片\wxbC#\练习\061101HouseInfoProject\HouseInfoProjectBLL\obj\Debug\HouseInfoProjectBLL.pdb
+D:\用户目录\我的图片\wxbC#\练习\061101HouseInfoProject\HouseInfoProjectBLL\bin\Debug\HouseInfoProjectDAL.dll
+D:\用户目录\我的图片\wxbC#\练习\061101HouseInfoProject\HouseInfoProjectBLL\bin\Debug\HouseInfoProjectModel.dll
+D:\用户目录\我的图片\wxbC#\练习\061101HouseInfoProject\HouseInfoProjectBLL\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\用户目录\我的图片\wxbC#\练习\061101HouseInfoProject\HouseInfoProjectBLL\bin\Debug\HouseInfoProjectDAL.pdb
+D:\用户目录\我的图片\wxbC#\练习\061101HouseInfoProject\HouseInfoProjectBLL\bin\Debug\HouseInfoProjectModel.pdb
