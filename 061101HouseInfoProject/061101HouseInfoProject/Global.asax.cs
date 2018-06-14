@@ -71,14 +71,14 @@ namespace _061101HouseInfoProject
                 string np = System.Configuration.ConfigurationManager.ConnectionStrings["namespace"].ToString();
                 Type x = Type.GetType(np + ".controllers." + fn);
                 //遍历类中是否定义特性,如无特性则用类名
-                string fna = "";
+                //string fna = fn;
                 List<Attribute> xattrs = x.GetCustomAttributes().ToList();
                 foreach (object fnattr in x.GetCustomAttributes())
                 {
                     AttrInfo attr = fnattr as AttrInfo;
                     if (attr != null)
                     {
-                        fna = attr.ClassName.Length > 0 ? attr.ClassName : fn;
+                        fn = attr.ClassName.Length > 0 ? attr.ClassName : fn;
                     }
                 }
                 //实例化controller对象
@@ -97,21 +97,21 @@ namespace _061101HouseInfoProject
                         }
                     }
                 }
-                fileNameClass.Add(fna.ToLower(), obj);
+                fileNameClass.Add(fn.ToLower(), obj);
                 //获得方法信息
                 List<MethodInfo> m = x.GetTypeInfo().DeclaredMethods.ToList();
                 foreach (MethodInfo mt in m)
                 {
-                    string mna = mt.Name;
+                    string mna = mt.Name + ".action";
                     foreach (object mtattr in mt.GetCustomAttributes(false))
                     {
                         AttrInfo mta = mtattr as AttrInfo;
                         if (mta != null)
                         {
-                            mna = mta.MethodName.Length > 0 ? mta.MethodName : (mt.Name + ".action");
+                            mna = mta.MethodName.Length > 0 ? (mta.MethodName + ".action") : mna;
                         }
                     }
-                    urlMethod.Add(fna + "/" + mna.ToLower(), mt);
+                    urlMethod.Add(fn.ToLower() + "/" + mna.ToLower(), mt);
                 }
             }
             Application["fileNameClass"] = fileNameClass;
