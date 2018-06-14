@@ -71,7 +71,11 @@ namespace _061101HouseInfoProject
                 string np = System.Configuration.ConfigurationManager.ConnectionStrings["namespace"].ToString();
                 Type x = Type.GetType(np + ".controllers." + fn);
                 //遍历类中是否定义特性,如无特性则用类名
-                //string fna = fn;
+                if (x.IsSealed)//判断是否为静态类(C#编译器会自动把静态类标记为sealed)
+                {
+                    continue;
+                }
+                //遍历类中是否定义特性,如无特性则用类名
                 List<Attribute> xattrs = x.GetCustomAttributes().ToList();
                 foreach (object fnattr in x.GetCustomAttributes())
                 {
@@ -116,6 +120,19 @@ namespace _061101HouseInfoProject
             }
             Application["fileNameClass"] = fileNameClass;
             Application["urlMethod"] = urlMethod;
+        }
+        //使用以下两个方法控制全局sessionid不会改变
+        void Session_Start(object sender, EventArgs e)
+        {
+            // Code that runs when a new session is started
+
+        }
+        void Session_End(object sender, EventArgs e)
+        {
+            // Code that runs when a session ends. 
+            // Note: The Session_End event is raised only when the sessionstate mode
+            // is set to InProc in the Web.config file. If session mode is set to StateServer 
+            // or SQLServer, the event is not raised.
         }
     }
 }
