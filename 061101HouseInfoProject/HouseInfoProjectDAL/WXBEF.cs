@@ -113,7 +113,7 @@ namespace HouseInfoProject.DAL
         /// <param name="columns">列名/数据类型名集合</param>
         /// <param name="pt">type</param>
         /// <returns>实例化对象</returns>
-        public object GetObjValueInColumns(IDataReader dr, Dictionary<string, string> columns, Type pt)
+        protected object getObjValueInColumns(IDataReader dr, Dictionary<string, string> columns, Type pt)
         {
             List<PropertyInfo> ptprs = pt.GetTypeInfo().DeclaredProperties.ToList();
             //string pfullname = Regex.Split((pt.FullName + "," + pt.Assembly.ManifestModule.Name), ".dll")[0];
@@ -121,26 +121,24 @@ namespace HouseInfoProject.DAL
             foreach (PropertyInfo p in ptprs)
             {
                 Type ptt = p.PropertyType;
-                string pname = p.Name;
-                foreach(object pattr in ptt.GetCustomAttributes())
-                {
-                    DeBugInfo dbi = pattr as DeBugInfo;
-                    if(dbi!=null)
-                    {
-                        pname = dbi.Columnname.Length == 0 ? p.Name : dbi.Columnname;
-                    }
-                }
-                bool isincolumns = isKey(pname.ToUpper(), columns);
+                bool isincolumns = isKey(p.Name.ToUpper(), columns);
                 if (isincolumns)
                 {
-                    object value = GetObjByType(ptt.Name, dr[p.Name.ToLower()]);
-                    p.SetValue(obj, value);
+                    if (dr[p.Name.ToLower()].GetType().Name.ToLower() == "dbnull")
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        object value = GetObjByType(ptt.Name, dr[p.Name.ToLower()]);
+                        p.SetValue(obj, value);
+                    }
                 }
                 else
                 {
                     if (!IsBaseType(ptt.Name))
                     {
-                        object ppvalue = GetObjValueInColumns(dr, columns, ptt);
+                        object ppvalue = getObjValueInColumns(dr, columns, ptt);
                         p.SetValue(obj, ppvalue);
                     }
                 }
@@ -184,6 +182,10 @@ namespace HouseInfoProject.DAL
                     obj = Convert.ToUInt32(paravalue); break;
                 case "UINT64":
                     obj = Convert.ToUInt64(paravalue); break;
+                case "LIST`1":
+                    obj = new List<object>(); break;
+                case "DICTIONARY`2":
+                    obj = new Dictionary<object, object>(); break;
                 default:
                     obj = paravalue; break;
             }
@@ -219,43 +221,22 @@ namespace HouseInfoProject.DAL
             switch (ptname.ToUpper())
             {
                 case "BOOLEAN":
-                    isBase = true;
-                    break;
                 case "BYTE":
-                    isBase = true;
-                    break;
                 case "CHAR":
-                    isBase = true;
-                    break;
                 case "DECIMAL":
-                    isBase = true;
-                    break;
                 case "DOUBLE":
-                    isBase = true;
-                    break;
                 case "INT16":
-                    isBase = true;
-                    break;
                 case "INT32":
+                case "SINGLE":
+                case "STRING":
+                case "UINT16":
+                case "UINT32":
+                case "UINT64":
+                case "LIST`1":
+                case "DICTIONARY`2":
                     isBase = true;
                     break;
                 case "INT64":
-                    break;
-                case "SINGLE":
-                    isBase = true;
-                    break;
-                case "STRING":
-                    isBase = true;
-                    break;
-                case "UINT16":
-                    isBase = true;
-                    break;
-                case "UINT32":
-                    isBase = true;
-                    break;
-                case "UINT64":
-                    isBase = true;
-                    break;
                 default:
                     isBase = false;
                     break;

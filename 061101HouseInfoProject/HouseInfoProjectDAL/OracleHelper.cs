@@ -138,7 +138,7 @@ namespace HouseInfoProject.DAL
                 }
                 result.Add(ob);
             }
-            dr.Close();
+            //dr.Close();
             return result;
         }
 
@@ -151,9 +151,10 @@ namespace HouseInfoProject.DAL
             {
                 columns.Add(row["ColumnName"].ToString().ToUpper(), row["DataType"].ToString().ToUpper());
             }
-            Type tt = typeof(T);
-            string classname = Regex.Split((tt.FullName + "," + tt.Assembly.ManifestModule.Name), ".dll")[0];
-            Type pt = Type.GetType(classname);
+            //Type tt = typeof(T);
+            //string classname = Regex.Split((tt.FullName + "," + tt.Assembly.ManifestModule.Name), ".dll")[0];
+            //Type pt = Type.GetType(classname);
+            Type pt = typeof(T);
             while (dr.Read())
             {
                 object ob = getObjValueInColumns(dr, columns, pt);
@@ -173,8 +174,15 @@ namespace HouseInfoProject.DAL
                 bool isincolumns = isKey(p.Name.ToUpper(), columns);
                 if (isincolumns)
                 {
-                    object value = GetObjByType(ptt.Name, dr[p.Name.ToLower()]);
-                    p.SetValue(obj, value);
+                    if (dr[p.Name.ToLower()].GetType().Name.ToLower() == "dbnull")
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        object value = GetObjByType(ptt.Name, dr[p.Name.ToLower()]);
+                        p.SetValue(obj, value);
+                    }
                 }
                 else
                 {
@@ -219,11 +227,44 @@ namespace HouseInfoProject.DAL
                     obj = Convert.ToUInt32(paravalue); break;
                 case "UINT64":
                     obj = Convert.ToUInt64(paravalue); break;
+                case "LIST`1":
+                    obj = new List<object>(); break;
+                 case "DICTIONARY`2":
+                    obj = new Dictionary<object,object>(); break;
                 default:
                     obj = paravalue; break;
             }
             return obj;
         }
+        //获得List对象
+        //private object GetGenericTypeObj(Type t)
+        //{
+        //    List<object> obj = t.Assembly.CreateInstance(t.FullName) as List<object>;
+        //    // If this is a generic type, display the type arguments.
+        //    //
+        //    Type[] typeArguments = t.GetGenericArguments();
+
+
+        //    foreach (Type tParam in typeArguments)
+        //    {
+        //        // If this is a type parameter, display its
+        //        // position.
+        //        //
+        //        if (IsBaseType(tParam.Name))
+        //        {
+        //            object param = GetObjByType(tParam.Name, tParam.Assembly.CreateInstance(tParam.FullName));
+        //            obj.Add(param);
+        //        }
+
+        //        else
+        //        {
+        //            object param = GetGenericTypeObj(tParam);
+        //            obj.Add(param);
+        //        }
+
+        //    }
+        //    return obj;
+        //}
         private bool isKey(string ptname, Dictionary<string, string> columns)
         {
             bool result = false;
@@ -279,6 +320,12 @@ namespace HouseInfoProject.DAL
                     isBase = true;
                     break;
                 case "UINT64":
+                    isBase = true;
+                    break;
+                case "LIST`1":
+                    isBase = true;
+                    break;
+                case "DICTIONARY`2":
                     isBase = true;
                     break;
                 default:
