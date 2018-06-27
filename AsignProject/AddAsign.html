@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>添加签到签退信息</title>
+		<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript">
+			var v;
+			window.onload = function() {
+
+				v = new Vue({
+					el: "#app",
+					data: {
+						//						function() {
+						//							return {
+						checkasign: 3,
+						ais: {},
+						issucess: ""
+						//							}
+						//						}
+					},
+					created: function() {
+						let d=new Date();
+						$.ajax({
+							type:"get",
+							url:"/interfaces/CheckAsignInfo.aspx?timer="+d.getTime(),
+							async:true,
+							data:{
+								sid:sessionStorage.getItem("sid")
+							},
+							success:(t)=>
+							{
+								this.checkasign=t.stat;
+								console.log(this.checkasign);
+							}
+						});
+
+					},
+					methods: {
+						asignin: () => {
+							let d=new Date();
+							$.ajax({
+								type: "post",
+								url: "/interfaces/AddAsignInfo.aspx?timer="+d.getTime(),
+								async: true,
+								data: {
+									atime: document.getElementById("asigntime").value.replace(/T/, "-"),
+									adesc: document.getElementById("asigndesc").value,
+									sid: sessionStorage.getItem("sid"),
+									sname: sessionStorage.getItem("sname"),
+									atag: 1
+								},
+								success: (t) => {
+									if(t.result) {
+										this.issucess = "添加成功";
+									} else {
+										this.issucess = "添加失败";
+									}
+								}
+							});
+						},
+						asignout:() => {
+							let d=new Date();
+							$.ajax({
+								type: "post",
+								url: "/interfaces/AddAsignInfo.aspx?timer="+d.getTime(),
+								async: true,
+								data: {
+									atime: document.getElementById("asigntime").value.replace(/T/, "-"),
+									adesc: document.getElementById("asigndesc").value,
+									sid: sessionStorage.getItem("sid"),
+									sname: sessionStorage.getItem("sname"),
+									atag: 0
+								},
+								success: (t) => {
+									if(t.result) {
+										this.issucess = "添加成功";
+									} else {
+										this.issucess = "添加失败";
+									}
+								}
+							});
+						}
+					}
+
+				});
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="app">
+
+			<h1>请您签到或签退</h1>
+			<br />
+			<span>
+			签卡日期：
+		</span> &emsp;
+
+			<input type="datetime-local" name="asigntime" id="asigntime" /> &emsp; &emsp; &emsp;
+			<input type="button" value="签到" v-show="checkasign=2" v-on:click="asignin" v-if="checkasign==0||checkasign==1" /> &emsp; &emsp; &emsp;
+			<input type="button" value="签退" v-show="checkasign=2" v-on:click="asignout" v-if="checkasign==0||checkasign==2" />
+			<br />
+			<br />
+			<br />
+			<span>
+			签卡备注：
+		</span> &emsp;
+			<textarea name="" id="asigndesc"></textarea>
+			<span>{{issucess}}
+		</span>
+		</div>
+	</body>
+
+</html>

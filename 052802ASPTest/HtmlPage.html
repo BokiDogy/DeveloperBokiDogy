@@ -1,0 +1,255 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<style type="text/css">
+			td {
+				border-style: none;
+			}
+			
+			#serchtxt {
+				margin-left: 30px;
+				margin-right: 10px;
+			}
+		</style>
+		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript">
+			var auvdefault;
+			var ismodi = 0;
+			var urlhead = "/GetAllEmps.aspx/";
+			var v;
+			var auv;
+			window.onload = loaddata;
+
+			function loaddata() {
+				auvdefault = {
+					Empno: "",
+					Ename: "",
+					Job: "",
+					Sal: "",
+					depts: [],
+					Deptno: 0
+				}
+				v = new Vue({
+					el: "#vue",
+					data: {
+						search: "",
+						emps: []
+					},
+					created: allquery,
+					methods: {
+						serch: function() {
+							let a = this;
+							$.ajax({
+								type: "get",
+								headers: {
+									kl: '2587'
+								},
+								url: "/QueryEmps.aspx/",
+								async: true,
+								data: {
+									serch: a.search
+								},
+								success: (respons) => this.emps = respons.data
+							});
+						},
+						del: function(empno) {
+							if(confirm("是否要删除这名员工？")) {
+								$.ajax({
+									type: "get",
+									headers: {
+										kl: '2587'
+									},
+									url: "/DeleteEmpByEmpno.aspx/",
+									async: true,
+									data: {
+										empno: empno
+									},
+									success: allquery()
+								});
+							}
+						},
+						modi: function(eno) {
+							ismodi = 1;
+							$("#mymodal").modal("toggle");
+							let a = null;
+							this.emps.forEach((x) => a = x.Empno == eno ? x : a);
+							$.extend(true, auv.em, a);
+							$.ajax({
+								type: "get",
+								headers: {
+									kl: '2587'
+								},
+								url: "/GetAllDept.aspx/",
+								async: true,
+								success: (t) => {
+									auv.em.depts = t.data;
+									auv.em.Deptno = a.Deptno;
+								}
+							});
+						},
+						adddefalt: function() {
+							ismodi = 0;
+							auv.em = {
+								Empno: "",
+								Ename: "",
+								Job: "",
+								Sal: "",
+								depts: [],
+								Deptno: 0
+							};
+							$("#mymodal").modal("toggle");
+							$.ajax({
+								type: "get",
+								headers: {
+									kl: '2587'
+								},
+								url: "/GetAllDept.aspx/",
+								async: true,
+								success: (t) => {
+									auv.em.depts = t.data;
+									auv.em.Deptno = t.data[0].Deptno;
+								}
+							});
+						}
+					}
+				});
+				auv = new Vue({
+					el: "#auv",
+					data: {
+						em: auvdefault
+					},
+					methods: {
+						add: function() {
+							let a = this.em;
+							let u = ismodi == 0 ? '/AddEmps.aspx/' : '/UpdateEmps.aspx/';
+							$.ajax({
+								type: "post",
+								headers: {
+									kl: '2587'
+								},
+								url: u,
+								async: true,
+								data: a,
+								success: allquery()
+							});
+						}
+					}
+				});
+			}
+
+			function allquery() {
+				$.ajax({
+					type: "get",
+					url: urlhead,
+					headers: {
+						kl: '2587'
+					},
+					async: true,
+					success: (respons) => v.emps = respons.data
+
+				});
+			}
+			//点击全选
+			function selectall() {
+				$("input[type='checkbox']").prop("checked", $("#selectall").prop("checked"));
+			}
+		</script>
+	</head>
+
+	<body>
+		<h2 style="color: #00AACC;">员工列表</h2>
+		<div id="vue">
+			<table width="700" border="1" ellspacing="0" style="border-style: solid; text-align: center;">
+				<thead id="myTable"></thead>
+				<tr height="22" style="background: #0ac;">
+					<td style="border-style: none;"><input type="checkbox" id="selectall" onclick="selectall()">全选</td>
+					<td>序号</td>
+					<td>员工编号</td>
+					<td>员工姓名</td>
+					<td>职位</td>
+					<td>工资</td>
+					<td>部门</td>
+					<td>操作</td>
+				</tr>
+
+				<tbody id="tbody">
+					<tr v-for="(e,i) in emps" v-bind:style="{backgroundColor: i%2==0?'#fff':'#0a9'}">
+						<td><input type="checkbox" id="cboxs"></td>
+						<td>{{i+1}}</td>
+						<td>{{e.Empno}}</td>
+						<td>{{e.Ename}}</td>
+						<td>{{e.Job}}</td>
+						<td>{{e.Sal}}</td>
+						<td>{{e.Dname}}</td>
+						<td><input type="button" value="修改" v-on:click="modi(e.Empno)"> &nbsp;&nbsp;
+							<input type="button" value="删除" v-on:click="del(e.Empno)"></td>
+					</tr>
+
+				</tbody>
+			</table>
+			<input type="button" value="新增" id="add" style="width: 80px;" v-on:click="adddefalt()" />
+			<input type="button" value="全部删除" id="alldel" style="width: 80px;" v-on:click="alldel()" />
+			<input type="text" id="serchtxt" size="30" value="" v-model="search" placeholder="请输入查询条件" />
+			<input type="button" value="模糊查询" id="serbyid" style="width: 100px;" v-on:click="serch()" />
+		</div>
+		<div class="container">
+			<!--			<button class="btn btn-primary" type="button" id="btn">点击我</button>
+-->
+			<!-- 加fade，有淡入淡出效果 -->
+			<div class="modal fade" id="mymodal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div id="auv">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+							</button>
+								<h4 class="modal-title" id="addtitle"></h4>
+							</div>
+							<div class="modal-body">
+								<form id="bd">
+									<p>员工编号: <input type="text" name="empno" id="empno" value="" v-model="em.Empno" /></p>
+									<p>员工姓名: <input type="text" name="ename" id="ename" value="" v-model="em.Ename" /></p>
+									<p>职位:&emsp;&emsp; <input type="text" name="job" id="job" value="" v-model="em.Job" /></p>
+									<p>工资:&emsp;&emsp; <input type="text" name="sal" id="sal" value="" v-model="em.Sal" /></p>
+									<p>部门:&emsp;&emsp;
+										<select name="Deptno" id="deptname" v-model="em.Deptno">
+											<option v-for="(d,i) in em.depts" :value="d.Deptno">{{d.Dname}}</option>
+										</select>
+									</p>
+								</form>
+
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+								<!-- 加data-dismiss="modal"，点击保存按钮后，模态框关闭 -->
+								<button type="button" class="btn btn-primary" data-dismiss="modal" v-on:click="add()">保存</button>
+							</div>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+		</div>
+		<script src="js/jquery-2.1.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+
+		<!--<script>
+			$(function() {
+				$("#btn").click(function() {
+					$("#mymodal").modal("toggle");
+				});
+			});
+		</script>-->
+	</body>
+
+</html>

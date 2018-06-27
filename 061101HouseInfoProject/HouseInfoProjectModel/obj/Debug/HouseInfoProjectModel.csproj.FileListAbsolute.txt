@@ -1,0 +1,10 @@
+D:\用户目录\我的图片\wxbC#\练习\061101HouseInfoProject\HouseInfoProjectModel\bin\Debug\HouseInfoProjectModel.dll
+D:\用户目录\我的图片\wxbC#\练习\061101HouseInfoProject\HouseInfoProjectModel\bin\Debug\HouseInfoProjectModel.pdb
+D:\用户目录\我的图片\wxbC#\练习\061101HouseInfoProject\HouseInfoProjectModel\obj\Debug\HouseInfoProjectModel.csprojResolveAssemblyReference.cache
+D:\用户目录\我的图片\wxbC#\练习\061101HouseInfoProject\HouseInfoProjectModel\obj\Debug\HouseInfoProjectModel.dll
+D:\用户目录\我的图片\wxbC#\练习\061101HouseInfoProject\HouseInfoProjectModel\obj\Debug\HouseInfoProjectModel.pdb
+F:\vsgit\DeveloperBokiDogy\061101HouseInfoProject\HouseInfoProjectModel\bin\Debug\HouseInfoProjectModel.dll
+F:\vsgit\DeveloperBokiDogy\061101HouseInfoProject\HouseInfoProjectModel\bin\Debug\HouseInfoProjectModel.pdb
+F:\vsgit\DeveloperBokiDogy\061101HouseInfoProject\HouseInfoProjectModel\obj\Debug\HouseInfoProjectModel.csprojResolveAssemblyReference.cache
+F:\vsgit\DeveloperBokiDogy\061101HouseInfoProject\HouseInfoProjectModel\obj\Debug\HouseInfoProjectModel.dll
+F:\vsgit\DeveloperBokiDogy\061101HouseInfoProject\HouseInfoProjectModel\obj\Debug\HouseInfoProjectModel.pdb

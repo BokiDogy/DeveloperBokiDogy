@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$.ajax({
+					type: "post",
+					url: "/wq2/ShowallInfo.action",
+					async: true,
+					data: {
+					    //s: "asd",
+                        //d:123
+					    s: {
+					        Class: {
+					            Classname: "一年一班",
+					            Classno: 2
+					        },
+					        Stuname: "武二",
+					        Stuno: 5,
+					        Ismale: true
+					    }
+
+					},
+					success: (t) => console.log(t)
+				});
+			})
+		</script>
+	</head>
+
+	<body>
+	</body>
+
+</html>
