@@ -12,7 +12,7 @@ namespace SVGStudy.DAL
     {
         public List<Emps> GetAllEmps()
         {
-            string sql = @"select e.*,d.dname, nvl(x.ename,'') mname from test_0320emps e ,test_0320depts d ,(select p.empno,p.ename from test_0320emps p union all select 0 empno,'' ename from dual) x where e.deptno=d.deptno and nvl(e.mgr,0)=x.empno order by e.hiredate,e.empno";
+            string sql = @"select e.*,d.dname, nvl(x.ename,'') mname from test_0320emps e ,test_0320depts d ,(select p.empno,p.ename from test_0320emps p union all select 0 empno,'' ename from dual) x where e.deptno=d.deptno and nvl(e.mgr,0)=x.empno";
             OracleDataReader dr = base.ExecuteSelect(sql, null);
             List<Emps> listem = new List<Emps>();
             while (dr.Read())

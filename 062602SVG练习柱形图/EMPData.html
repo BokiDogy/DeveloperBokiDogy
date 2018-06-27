@@ -38,16 +38,16 @@
 							let x = t[i];
 							maxsal = parseInt(x.Sal) > maxsal ? parseInt(x.Sal) : maxsal;
 						}
-						height = maxsal * 0.1 + 20;
+						height = maxsal * 0.2 + 20;
 						let height1 = height + 100;
-						for(let i = 0; i <= parseInt(parseInt(maxsal) / 500); i++) {
-							console.log(i);
+
+						for(let i = 0; i < parseInt(parseInt(maxsal) / 500); i++) {
 							//画刻度
 							$(".svg").append($(`<line></line>`).attr({
 								"x1": 50,
-								"y1": height - i * 50,
+								"y1": height - i * 100,
 								"x2": 55,
-								"y2": height - i * 50
+								"y2": height - i * 100
 							}).css({
 								"stroke": "black",
 								"stroke-width": 2,
@@ -57,7 +57,7 @@
 							//写刻度数值
 							$(".svg").append($(`<text></text>`).attr({
 								"x": 10,
-								"y": height - i * 50 + 4,
+								"y": height - i * 100 + 4,
 							}).css({
 								"display": "block",
 								"font-size": "9pt",
@@ -68,9 +68,9 @@
 
 							$("#sv1").append($(`<line></line>`).attr({
 								"x1": 50,
-								"y1": height1 - i * 50,
+								"y1": height1 - i * 100,
 								"x2": 55,
-								"y2": height1 - i * 50
+								"y2": height1 - i * 100
 							}).css({
 								"stroke": "black",
 								"stroke-width": 2,
@@ -79,7 +79,7 @@
 							}));
 							$("#sv1").append($(`<text></text>`).attr({
 								"x": 10,
-								"y": height1 - i * 50 + 4,
+								"y": height1 - i * 100 + 4,
 							}).css({
 								"display": "block",
 								"font-size": "9pt",
@@ -96,8 +96,8 @@
 						$("#Xline1").attr("y2", `${height1}`);
 						for(let i in t) {
 							let x = t[i];
-							points += `${i==0?'M':'L'}${i*50+50} ${height - parseInt(x.Sal) * 0.1} `
-							pointspoli += `${i*50+50},${height - parseInt(x.Sal) * 0.1} `
+							points += `${i==0?'M':'L'}${i*50+50} ${height - parseInt(x.Sal) * 0.2} `
+							pointspoli += `${i*50+50},${height - parseInt(x.Sal) * 0.2} `
 							$("#sv").append($(`<text></text>`).attr({
 								"x": i * 50 + 50 + 50 - 15,
 								"y": height + 20
@@ -110,10 +110,10 @@
 							}).html(x.Ename));
 							$("#sv").append($(`<rect></rect>`).attr({
 								"x": i * 50 + 50 + 50 - 10,
-								"y": height - parseInt(x.Sal) * 0.1,
+								"y": height - parseInt(x.Sal) * 0.2,
 								"rx": "10",
 								"ry": "10",
-								"height": parseInt(x.Sal) * 0.1,
+								"height": parseInt(x.Sal) * 0.2,
 								"width": 25
 							}).css({
 								"display": "block",
@@ -124,8 +124,8 @@
 							}));
 							$("#sv").append($(`<rect></rect>`).attr({
 								"x": i * 50 + 50 + 50 - 10,
-								"y": height - parseInt(x.Sal) * 0.05,
-								"height": parseInt(x.Sal) * 0.05,
+								"y": height - parseInt(x.Sal) * 0.1,
+								"height": parseInt(x.Sal) * 0.1,
 								"width": 25
 							}).css({
 								"display": "block",
@@ -136,7 +136,7 @@
 							let dev = i == 0 ? 10 : (Math.abs(parseInt(x.Sal) - parseInt(t[i - 1].Sal)) < 10 ? 20 : 10);
 							$("#sv").append($(`<text></text>`).attr({
 								"x": `${i*50+50+50-25}`,
-								"y": height - parseInt(x.Sal) * 0.1 - dev,
+								"y": height - parseInt(x.Sal) * 0.2 - dev,
 							}).css({
 								"display": "block",
 								"font-size": "9pt",
@@ -157,8 +157,8 @@
 							}).html(x.Ename));
 							$("#sv1").append($(`<circle></circle>`).attr({
 								"cx": i * 50 + 50 + 50,
-								"cy": height1 - parseInt(x.Sal) * 0.1,
-								"r": parseInt(x.Sal) * 0.02
+								"cy": height1 - parseInt(x.Sal) * 0.2,
+								"r": parseInt(x.Sal) * 0.03
 							}).css({
 								"display": "block",
 								"fill": colors[i],
@@ -183,7 +183,7 @@
 							let dev = i == 0 ? 10 : (Math.abs(parseInt(x.Sal) - parseInt(t[i - 1].Sal)) < 10 ? 20 : 10);
 							$("#sv1").append($(`<text></text>`).attr({
 								"x": `${i*50+50+50-25+ dev}`,
-								"y": height1 - parseInt(x.Sal) * 0.1,
+								"y": height1 - parseInt(x.Sal) * 0.2,
 							}).css({
 								"display": "block",
 								"font-size": "9pt",
@@ -216,9 +216,9 @@
 							if(parseInt(i) < t.length - 1) {
 								$("#sv2").append($(`<line></line>`).attr({
 									"x1": parseInt(i) * 50 + 50 + 50,
-									"y1": height - parseInt(x.Sal) * 0.1,
+									"y1": height - parseInt(x.Sal) * 0.2,
 									"x2": (parseInt(i) + 1) * 50 + 50 + 50,
-									"y2": height - parseInt(t[parseInt(i) + 1].Sal) * 0.1,
+									"y2": height - parseInt(t[parseInt(i) + 1].Sal) * 0.2,
 								}).css({
 									"stroke": colors2[i],
 									"stroke-width": 5,
@@ -228,7 +228,7 @@
 							}
 							$("#sv2").append($(`<circle></circle>`).attr({
 								"cx": i * 50 + 50 + 50,
-								"cy": height - parseInt(x.Sal) * 0.1,
+								"cy": height - parseInt(x.Sal) * 0.2,
 								"r": 10
 							}).css({
 								"display": "block",
@@ -238,7 +238,7 @@
 							}));
 							$("#sv2").append($(`<text></text>`).attr({
 								"x": `${i*50+50+50-25}`,
-								"y": height - parseInt(x.Sal) * 0.1 - dev,
+								"y": height - parseInt(x.Sal) * 0.2 - dev,
 							}).css({
 								"display": "block",
 								"font-size": "9pt",
@@ -423,26 +423,12 @@
 			</svg>
 			<h2>散点图</h2>
 			<svg id="sv1" width="1100" height="800" xmlns="http://www.w3.org/2000/svg" version="1.1">
-				<!--			<rect width="300" height="200" fill="orange"></rect>
--->
-				<!--			<circle cx="100" cy="50" r="40" stroke="black" stroke-width="1" fill="red" />
--->
-				<!--			<rect x="100" y="100" width="300" height="100" style="fill:rgb(0,0,255);stroke-width:1;stroke:rgb(0,0,0)" />
--->
-
 				<line id="Yline1" x1="50" y1="0" x2="50" y2="600" style="stroke:rgb(0,0,0);stroke-width:2"></line>
 
 				<line id="Xline1" x1="50" y1="600" x2="200" y2="600" style="stroke:rgb(0,0,0);stroke-width:2"></line>
 			</svg>
 			<h2>折线图</h2>
 			<svg class="svg" id="sv2" width="1100" height="800" xmlns="http://www.w3.org/2000/svg" version="1.1">
-				<!--			<rect width="300" height="200" fill="orange"></rect>
--->
-				<!--			<circle cx="100" cy="50" r="40" stroke="black" stroke-width="1" fill="red" />
--->
-				<!--			<rect x="100" y="100" width="300" height="100" style="fill:rgb(0,0,255);stroke-width:1;stroke:rgb(0,0,0)" />
--->
-
 				<line class="Yline" x1="50" y1="0" x2="50" y2="600" style="stroke:rgb(0,0,0);stroke-width:2"></line>
 
 				<line class="Xline" x1="50" y1="600" x2="200" y2="600" style="stroke:rgb(0,0,0);stroke-width:2"></line>

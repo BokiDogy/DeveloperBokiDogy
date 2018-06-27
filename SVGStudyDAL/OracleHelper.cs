@@ -14,7 +14,7 @@ namespace SVGStudy.DAL
     public class OracleHelper
     {
         //private string constr = System.Configuration.ConfigurationManager.ConnectionStrings["OracleDB"].ToString();
-        private string constr ="Data source=alias;User id=scott;Password=orcl";
+        private string constr ="Data source=alias;User id=scott;Password=oracle11g";
         private OracleConnection GetOracleConnection()
         {
             return new OracleConnection(constr);
