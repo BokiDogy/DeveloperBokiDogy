@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>D3Study</title>
+		<script type="text/javascript" src="Scripts/d3(3.5.17).min.js"></script>
+		<script type="text/javascript" src="Scripts/axios.min.js"></script>
+		<script type="text/javascript" src="Scripts/colorChange.js"></script>
+
+		<script type="text/javascript">
+			var data = [];
+			//			var $$ = (x) => [].slice.call(x,0,0);
+			window.onload = function() {
+				axios.get("/EMP/GetAllEmps").then((t) => allquery(t.data));
+			}
+
+			function allquery(t) {
+				d3.selectAll("#bg ul li").data(t).text((x, i) => x.Ename);
+				d3.select("#bg").selectAll("*").style("display", "none");
+				let sv = d3.select("#bg").append("svg").attr({
+					"width": 1100,
+					"height": 800
+				});
+				let colors = colorChange2("FF006C", "EDF003", "01A3FF", t.length);
+//				console.log(colors);
+//				let colorsvalue=[];
+//				t.forEach((x,i)=>colorsvalue.push({sal:t[i].Sal,color:colors[i]}));
+//				console.log(colorsvalue);
+//				colorsvalue.sort((a,b)=>{
+//					return a.sal>b.sal?1:(a.sal==b.sal?0:-1)
+//				});
+				let height = d3.max(t, (x) => parseInt(x.Sal)) * 0.2 + 20;
+				let rect = sv.selectAll("rect").data(t).enter().append("rect").attr({
+					"x": (x, i) => i * 50 + 50 + 50 - 10,
+					"y": (x, i) => height - parseInt(x.Sal) * 0.2,
+					"rx": "10",
+					"ry": "10",
+					"height": (x, i) => parseInt(x.Sal) * 0.2,
+					"width": 25
+				}).style({
+					"display": "block",
+					"fill": (x, i) => colors[i],
+					"white-space": "nowrap",
+					"fill-opacity": "0.5",
+					"transform-origin": " 0px 0px 0px"
+				});
+				let half_rect = sv.selectAll("*:not(*)").data(t).enter().append("rect").attr({
+					"x": (x, i) => i * 50 + 50 + 50 - 10,
+					"y": (x, i) => height - parseInt(x.Sal) * 0.1,
+					"height": (x, i) => parseInt(x.Sal) * 0.1,
+					"width": 25
+				}).style({
+					"display": "block",
+					"fill": (x, i) => colors[i],
+					"white-space": "nowrap",
+					"fill-opacity": "0.7",
+					"transform-origin": " 0px 0px 0px"
+				});
+				let Xline = sv.append("polyline").data([`50,0 50,${height} ${t.length*50+50+100},${height}`]).attr({
+					"points": (x) => x,
+				}).style({
+					"fill": "none",
+					"stroke":"#000",
+					"stroke-width":2
+				});
+			}
+
+			//将对象解析成key=value
+			function getDataUrl(obj) {
+				let date = new Date();
+				let str = '?timer=' + date.getTime();
+				for(let n in obj) {
+					str += '&' + n + '=' + obj[n];
+				}
+				return str;
+			}
+		</script>
+		<meta charset="utf-8" />
+	</head>
+
+	<body>
+		<div id="bg">
+			<div class="active">
+
+			</div>
+			<div class="active">
+
+			</div>
+			<ul>
+				<li>a</li>
+				<li>b</li>
+				<li>c</li>
+			</ul>
+			<form action="" method="post">
+				<input type="text" id="uname" name="uname" value="" />
+				<input type="password" id="pwd" name="pwd" />
+				<input type="submit" value="" />
+			</form>
+		</div>
+	</body>
+
+</html>
