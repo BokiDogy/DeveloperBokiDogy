@@ -1,9 +1,0 @@
-D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\052802ASPTest\DBHelper\bin\Debug\AspTestDAl.dll.config
-D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\052802ASPTest\DBHelper\bin\Debug\AspTestDAl.dll
-D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\052802ASPTest\DBHelper\bin\Debug\AspTestDAl.pdb
-D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\052802ASPTest\DBHelper\bin\Debug\AspTestModel.dll
-D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\052802ASPTest\DBHelper\bin\Debug\Oracle.ManagedDataAccess.dll
-D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\052802ASPTest\DBHelper\bin\Debug\AspTestModel.pdb
-D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\052802ASPTest\DBHelper\obj\Debug\AspTestDAL.csprojResolveAssemblyReference.cache
-D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\052802ASPTest\DBHelper\obj\Debug\AspTestDAl.dll
-D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\052802ASPTest\DBHelper\obj\Debug\AspTestDAl.pdb

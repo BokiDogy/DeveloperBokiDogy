@@ -1,6 +1,0 @@
-D:\用户目录\我的图片\wxbC#\练习\020602非常经典的JAVA编程题全集\经典28\bin\Debug\经典28.exe.config
-D:\用户目录\我的图片\wxbC#\练习\020602非常经典的JAVA编程题全集\经典28\bin\Debug\经典28.exe
-D:\用户目录\我的图片\wxbC#\练习\020602非常经典的JAVA编程题全集\经典28\bin\Debug\经典28.pdb
-D:\用户目录\我的图片\wxbC#\练习\020602非常经典的JAVA编程题全集\经典28\obj\Debug\经典28.exe
-D:\用户目录\我的图片\wxbC#\练习\020602非常经典的JAVA编程题全集\经典28\obj\Debug\经典28.pdb
-D:\用户目录\我的图片\wxbC#\练习\020602非常经典的JAVA编程题全集\经典28\obj\Debug\经典28.csprojResolveAssemblyReference.cache

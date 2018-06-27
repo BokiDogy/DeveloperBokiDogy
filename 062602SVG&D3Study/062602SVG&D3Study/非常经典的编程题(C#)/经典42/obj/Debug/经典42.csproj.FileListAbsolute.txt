@@ -1,5 +1,0 @@
-F:\net全栈工程师\练习\020602非常经典的JAVA编程题全集\经典42\bin\Debug\经典42.exe.config
-F:\net全栈工程师\练习\020602非常经典的JAVA编程题全集\经典42\bin\Debug\经典42.exe
-F:\net全栈工程师\练习\020602非常经典的JAVA编程题全集\经典42\bin\Debug\经典42.pdb
-F:\net全栈工程师\练习\020602非常经典的JAVA编程题全集\经典42\obj\Debug\经典42.exe
-F:\net全栈工程师\练习\020602非常经典的JAVA编程题全集\经典42\obj\Debug\经典42.pdb

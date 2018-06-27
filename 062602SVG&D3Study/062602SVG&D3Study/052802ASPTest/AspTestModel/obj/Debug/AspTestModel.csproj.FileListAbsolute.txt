@@ -1,8 +1,0 @@
-D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\AspTestModel\bin\Debug\AspTestModel.dll
-D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\AspTestModel\bin\Debug\AspTestModel.pdb
-D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\AspTestModel\obj\Debug\AspTestModel.dll
-D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\AspTestModel\obj\Debug\AspTestModel.pdb
-D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\052802ASPTest\AspTestModel\bin\Debug\AspTestModel.dll
-D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\052802ASPTest\AspTestModel\bin\Debug\AspTestModel.pdb
-D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\052802ASPTest\AspTestModel\obj\Debug\AspTestModel.dll
-D:\用户目录\我的图片\wxbC#\DeveloperBokiDogy\052802ASPTest\AspTestModel\obj\Debug\AspTestModel.pdb
