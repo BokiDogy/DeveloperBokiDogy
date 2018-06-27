@@ -164,7 +164,7 @@ namespace MVC
             return obj;
         }
         /// <summary>
-        /// 递归方式生成JSON
+        /// 递归方式生成JSON字符串（不包含数组）
         /// </summary>
         /// <param name="o">目标对象</param>
         /// <returns>JSON字符串</returns>
