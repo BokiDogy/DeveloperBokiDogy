@@ -44,13 +44,14 @@
 				};
 				let sv = d3.select("#bg").append("svg").attr({
 					"width": svgSize.w,
+					"height": svgSize.h
 				});
 				let cell = 50;
 				let maxY = d3.max(t, (x) => parseInt(x.Sal));
 				let Ylinear = d3.scale.linear().domain([0, maxY + 1000]).range([svgSize.h - margin.bottom - 50, margin.top]);
 				let halfYlinear = d3.scale.linear().domain([0, maxY + 1000]).range([svgSize.h - margin.bottom - 50, (svgSize.h - margin.bottom - 50 - margin.top) / 1.5]);
 				let Xlinear = d3.scale.linear().domain([0, t.length]).range([margin.left + cell, svgSize.w - margin.right - 50]);
-
+               console.log(Xlinear);
 				let colors = colorChange2("FF0033", "EDF003", "0099FF", t.length);
 				//				let colors = colorChange2("BBEEFF",  "0099FF","000066", t.length);
 

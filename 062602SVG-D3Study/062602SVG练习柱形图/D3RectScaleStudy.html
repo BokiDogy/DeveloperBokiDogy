@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title></title>
+		<meta charset="utf-8" />
+		<style type="text/css">
+			g path,
+			g line {
+				fill: none;
+				stroke: #000;
+				stroke-width: 2
+			}
+			
+			.tick text {
+				font-size: 11pt;
+				font-family: 微软雅黑;
+				stroke-width: 2;
+			}
+		</style>
+		<script type="text/javascript" src="Scripts/d3(3.5.17).min.js"></script>
+		<script type="text/javascript" src="Scripts/axios.min.js"></script>
+		<script type="text/javascript" src="Scripts/colorChange.js"></script>
+
+		<script type="text/javascript">
+			var data = [];
+			//			var $$ = (x) => [].slice.call(x,0,0);
+			window.onload = function() {
+				axios.get("/EMP/GetAllEmps").then((t) => allquery(t.data));
+			}
+
+			function allquery(t) {
+				d3.select("#bg").selectAll("*").style("display", "none");
+				drawRect(t);
+				//				drawCircle(t);
+				//				drawPolyLine(t);
+			}
+
+			function drawRect(t) {
+				let svgSize = {
+					w: 1200,
+					h: 800
+				};
+				let margin = {
+					top: 60,
+					bottom: 40,
+					left: 80,
+					right: 50
+				};
+				let sv = d3.select("#bg").append("svg").attr({
+					"width": svgSize.w,
+					"height": svgSize.h
+				});
+				let sals = t.map((x) => parseInt(x.Sal));
+				let maxY = d3.max(sals);
+				let ename = t.map((x) => parseInt(x.Ename));
+				ename.splice(0, 0, "");
+				let index = d3.range(0, sals.length + 2);
+				//				index.splice(index.length - 1, 1, "");
+				//定义X,Y比例尺
+				let Xscale = d3.scale.ordinal().domain(index).rangePoints([0, svgSize.w - margin.left - margin.right]);
+				let Yscale = d3.scale.linear().domain([0, maxY + 500]).range([svgSize.h - margin.top - margin.bottom, 0]);
+				//画X,Y轴
+				let Xaxis = d3.svg.axis().scale(Xscale).orient("bottom");
+				let Xline = sv.append("g")
+					.attr('transform', "translate(" + (margin.left) + "," + (svgSize.h - margin.bottom) + ")")
+					.call(Xaxis);
+				let Yaxis = d3.svg.axis().scale(Yscale).orient("left").ticks(9);
+				let Yline = sv.append("g")
+					.attr('transform', "translate(" + (margin.left) + "," + (margin.top) + ")")
+					.call(Yaxis);
+				let cell = Xscale.range()[1];
+				let rectwidth = (Xscale.range()[1]) / 2;
+				//              let colors = colorChange2("FF0011", "9933CC", "0099FF", t.length);
+				//let colors = colorChange2("AADDFF", "0099FF", "0000AA", t.length);
+				let colors = colorChange2("FF0033", "EDF003", "0099FF", t.length);
+
+				let hubucolors = colors.map((x) => getHucaise(x));
+				let duibicolors = colors.map((x) => getComplycolor(x));
+				//画条形
+				let rect = sv.selectAll("rect").data(sals).enter().append("rect").on({
+					"mouseover": (x, i) => mover(i),
+					"mouseout": (x, i) => mout(x,i)
+				}).attr({
+					"class": (x, i) => "rect" + i,
+					"x": (x, i) => cell * (i + 1) - rectwidth / 2 + margin.left,
+					"y": (x, i) => Yscale(0) + margin.top,
+					"rx": "10",
+					"ry": "10",
+					"height": (x, i) => 0,
+					"width": rectwidth
+				}).style({
+					"display": "block",
+					"fill": (x, i) => hubucolors[i],
+					"fill-opacity": "0.7",
+				}).transition().duration(1000).ease("bounce").delay((d, i) => 100 * i).attr({
+					"class": (x, i) => "rect" + i,
+					"x": (x, i) => cell * (i + 1) - rectwidth / 2 + margin.left,
+					"y": (x, i) => Yscale(x) + margin.top,
+					"rx": "10",
+					"ry": "10",
+					"height": (x, i) => svgSize.h - margin.bottom - margin.top - Yscale(x),
+					"width": rectwidth
+				}).style({
+					"display": "block",
+					"fill": (x, i) => colors[i],
+					"fill-opacity": "0.7",
+				});
+				let half_rect = sv.selectAll("*:not(*)").data(sals).enter().append("rect").attr({
+					"class": (x, i) => "rect" + i,
+					"x": (x, i) => cell * (i + 1) - rectwidth / 2 + margin.left,
+					"y": (x, i) => Yscale(0) + margin.top,
+					"height": 0,
+					"width": rectwidth
+				}).style({
+					"display": "block",
+					"fill": (x, i) => hubucolors[i],
+					"fill-opacity": "0.75",
+				}).transition().duration(1000).ease("bounce").delay((d, i) => 2000 + 100 * i).attr({
+					"class": (x, i) => "rect" + i,
+					"x": (x, i) => cell * (i + 1) - rectwidth / 2 + margin.left,
+					"y": (x, i) => Yscale(x / 2) + margin.top,
+					"height": (x, i) => svgSize.h - margin.bottom - margin.top - Yscale(x / 2),
+					"width": rectwidth
+				}).style({
+					"display": "block",
+					"fill": (x, i) => colors[i],
+					"fill-opacity": "0.75",
+				});
+				//画标签
+				let text = sv.selectAll("*:not(*)").data(t).enter().append("text").attr({
+						"class": "lab",
+						"x": (x, i) => cell * (i + 1) + margin.left,
+						"y": (x, i) => {
+							let dev = i == 0 ? 10 : (Math.abs(parseInt(x.Sal) - parseInt(t[i - 1].Sal)) < 10 ? 25 : 10);
+							return(Yscale(parseInt(0)) + margin.top - dev);
+						}
+					}).style({
+						"text-anchor": "middle",
+						"font-size": "11pt",
+						"fill": "#333",
+						"font-style": "italic"
+					}).transition().duration(1000).ease("bounce").delay((d, i) => 3000 + 100 * i)
+					.attr({
+						"class": (x, i) => "lab" + i,
+						"x": (x, i) => cell * (i + 1) + margin.left,
+						"y": (x, i) => {
+							let dev = i == 0 ? 10 : (Math.abs(parseInt(x.Sal) - parseInt(t[i - 1].Sal)) < 10 ? 25 : 10);
+							return(Yscale(parseInt(x.Sal)) + margin.top - dev);
+						}
+					}).style({
+						"text-anchor": "middle",
+						"font-size": "11pt",
+						"fill": "#333",
+						"font-style": "italic"
+					}).text((x) => "$" + `${x.Sal}.00`);
+
+				t.forEach((d, ind) => {
+					sv.selectAll("*:not(*)").data(d.Ename.split('')).enter().append("text").attr({
+							"class": "name" + ind,
+							"x": (x, i) => cell * (ind + 1) + margin.left,
+							"y": (x, i) => Yscale(parseInt(0)) + margin.top + (parseInt(0) > 100 ? 20 : -(d.Ename.length * 28)) + 0 * 20
+
+						}).style({
+							"text-anchor": "middle",
+							"font-size": "11pt",
+							"fill": d.Sal < 100 ? colors[ind] : duibicolors[ind],
+						}).transition().duration(1000).ease("bounce").delay((d, i) => 100 * ind + 100 * i)
+						.attr({
+							"class": "name" + ind,
+							"x": (x, i) => cell * (ind + 1) + margin.left,
+							"y": (x, i) => Yscale(parseInt(d.Sal)) + margin.top + (parseInt(d.Sal) > 100 ? 20 : -(d.Ename.length * 28)) + i * 20
+
+						}).style({
+							"text-anchor": "middle",
+							"font-size": "11pt",
+							"fill": d.Sal < 100 ? colors[ind] : duibicolors[ind],
+						}).text((x) => x);
+				})
+
+				var mover = function(i) {
+					d3.selectAll(`.rect${i}`).transition().duration(200).delay((d, i) =>100).style("fill", duibicolors[i]).style("cursor", "pointer");
+					d3.selectAll(`.name${i}`).transition().duration(200).delay((d, i) =>100).style("fill", colors[i]).style("cursor", "pointer");
+					//					.transition().duration(400).ease("bounce").delay((d, i) => 200)
+					//					sv.selectAll(".lat").transition().duration(400).ease("bounce").delay((d, i) => 200).attr("fill", (d, i) => colors[i]);
+				}
+
+				var mout = function(d, i) {
+					d3.selectAll(`.rect${i}`).transition().duration(200).delay((d, i) => 100).style("fill", colors[i]);
+					d3.selectAll(`.name${i}`).transition().duration(200).delay((d, i) => 100).style("fill", d.Sal < 100 ? colors[i] : duibicolors[i]);
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="bg">
+
+		</div>
+	</body>
+
+</html>
