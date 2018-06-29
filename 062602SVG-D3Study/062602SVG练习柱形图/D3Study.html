@@ -4,6 +4,14 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>D3Study</title>
+		<style type="text/css">
+			.tick text {
+				font-size: 11pt;
+				font-family: 宋体;
+				font-weight: 100;
+				stroke-width: 1;
+			}
+		</style>
 		<script type="text/javascript" src="Scripts/d3(3.5.17).min.js"></script>
 		<script type="text/javascript" src="Scripts/axios.min.js"></script>
 		<script type="text/javascript" src="Scripts/colorChange.js"></script>
@@ -18,26 +26,50 @@
 			function allquery(t) {
 				d3.selectAll("#bg ul li").data(t).text((x, i) => x.Ename);
 				d3.select("#bg").selectAll("*").style("display", "none");
+				drawRect(t);
+				drawCircle(t);
+				drawPolyLine(t);
+			}
+
+			function drawRect(t) {
+				let svgSize = {
+					w: 1100,
+					h: 800
+				};
+				let margin = {
+					top: 100,
+					bottom: 40,
+					left: 50,
+					right: 50
+				};
 				let sv = d3.select("#bg").append("svg").attr({
-					"width": 1100,
-					"height": 800
+					"width": svgSize.w,
 				});
-				let colors = colorChange2("FF006C", "EDF003", "01A3FF", t.length);
-//				console.log(colors);
-//				let colorsvalue=[];
-//				t.forEach((x,i)=>colorsvalue.push({sal:t[i].Sal,color:colors[i]}));
-//				console.log(colorsvalue);
-//				colorsvalue.sort((a,b)=>{
-//					return a.sal>b.sal?1:(a.sal==b.sal?0:-1)
-//				});
+				let cell = 50;
+				let maxY = d3.max(t, (x) => parseInt(x.Sal));
+				let Ylinear = d3.scale.linear().domain([0, maxY + 1000]).range([svgSize.h - margin.bottom - 50, margin.top]);
+				let halfYlinear = d3.scale.linear().domain([0, maxY + 1000]).range([svgSize.h - margin.bottom - 50, (svgSize.h - margin.bottom - 50 - margin.top) / 1.5]);
+				let Xlinear = d3.scale.linear().domain([0, t.length]).range([margin.left + cell, svgSize.w - margin.right - 50]);
+
+				let colors = colorChange2("FF0033", "EDF003", "0099FF", t.length);
+				//				let colors = colorChange2("BBEEFF",  "0099FF","000066", t.length);
+
+				//console.log(colors);
+				//				let colorsvalue=[];
+				//				t.forEach((x,i)=>colorsvalue.push({sal:t[i].Sal,color:colors[i]}));
+				//				console.log(colorsvalue);
+				//				colorsvalue.sort((a,b)=>{
+				//					return a.sal>b.sal?1:(a.sal==b.sal?0:-1)
+				//				});
 				let height = d3.max(t, (x) => parseInt(x.Sal)) * 0.2 + 20;
+				//画条形
 				let rect = sv.selectAll("rect").data(t).enter().append("rect").attr({
-					"x": (x, i) => i * 50 + 50 + 50 - 10,
-					"y": (x, i) => height - parseInt(x.Sal) * 0.2,
+					"x": (x, i) => Xlinear(i) - 15,
+					"y": (x, i) => Ylinear(parseInt(x.Sal)),
 					"rx": "10",
 					"ry": "10",
-					"height": (x, i) => parseInt(x.Sal) * 0.2,
-					"width": 25
+					"height": (x, i) => svgSize.h - margin.bottom - 50 - Ylinear(parseInt(x.Sal)),
+					"width": 30
 				}).style({
 					"display": "block",
 					"fill": (x, i) => colors[i],
@@ -46,10 +78,10 @@
 					"transform-origin": " 0px 0px 0px"
 				});
 				let half_rect = sv.selectAll("*:not(*)").data(t).enter().append("rect").attr({
-					"x": (x, i) => i * 50 + 50 + 50 - 10,
-					"y": (x, i) => height - parseInt(x.Sal) * 0.1,
-					"height": (x, i) => parseInt(x.Sal) * 0.1,
-					"width": 25
+					"x": (x, i) => Xlinear(i) - 15,
+					"y": (x, i) => halfYlinear(parseInt(x.Sal)),
+					"height": (x, i) => svgSize.h - margin.bottom - 50 - halfYlinear(parseInt(x.Sal)),
+					"width": 30
 				}).style({
 					"display": "block",
 					"fill": (x, i) => colors[i],
@@ -57,13 +89,187 @@
 					"fill-opacity": "0.7",
 					"transform-origin": " 0px 0px 0px"
 				});
-				let Xline = sv.append("polyline").data([`50,0 50,${height} ${t.length*50+50+100},${height}`]).attr({
-					"points": (x) => x,
+
+				//加标签
+				let saltext = sv.selectAll("text").data(t).enter().append("text").attr({
+					"x": (x, i) => Xlinear(i),
+					"y": (x, i) => {
+						let dev = i == 0 ? 10 : (Math.abs(parseInt(x.Sal) - parseInt(t[i - 1].Sal)) < 10 ? 20 : 10);
+						return(Ylinear(parseInt(x.Sal)) - dev);
+					},
 				}).style({
-					"fill": "none",
-					"stroke":"#000",
-					"stroke-width":2
+					"text-anchor": "middle",
+					"font-size": "9pt",
+					"fill": "black",
+				}).text((x) => "$" + x.Sal + ".00");
+
+				drawXYlineText(sv, svgSize, margin, cell, Xlinear, Ylinear, t);
+
+			}
+
+			function drawPolyLine(t) {
+				let svgSize = {
+					w: 1200,
+					h: 800
+				};
+				let margin = {
+					top: 100,
+					bottom: 40,
+					left: 50,
+					right: 50
+				};
+				let sv = d3.select("#bg").append("svg").attr({
+					"width": svgSize.w,
+					"height": svgSize.h
 				});
+				let cell = 60;
+				let colors = colorChange2("FF0033", "EDF003", "0099FF", t.length);
+				//				let colors = colorChange2("BBEEFF",  "0099FF","000066", t.length);
+				let maxY = d3.max(t, (x) => parseInt(x.Sal));
+				let Ylinear = d3.scale.linear().domain([0, maxY + 1000]).range([svgSize.h - margin.bottom - 50, margin.top]);
+				let Xlinear = d3.scale.linear().domain([0, t.length]).range([margin.left + cell, svgSize.w - margin.right - 50]);
+				let colorsvalue = [];
+				t.forEach((x, i) => colorsvalue.push({
+					index: i,
+					sal: parseInt(x.Sal)
+				}));
+				colorsvalue.sort((a, b) => {
+					return Math.sign(b.sal - a.sal);
+				});
+				colorsvalue.forEach((x, i) => x.color = colors[i]);
+				colorsvalue.sort((a, b) => {
+					return Math.sign(a.index - b.index);
+				});
+				//				let height = d3.max(t, (x) => parseInt(x.Sal)) * 0.16 + margin.top;
+				let cirs = sv.selectAll("circle").data(t).enter().append("circle").attr({
+					"cx": (x, i) => Xlinear(i) - 10,
+					"cy": (x, i) => Ylinear(parseInt(x.Sal)),
+					"r": 8
+				}).style({
+					"display": "block",
+					"fill": (x, i) => colorsvalue[i].color,
+					"white-space": "nowrap",
+					"fill-opacity": "0.6",
+					"transform-origin": " 0px 0px 0px"
+				});
+				let lines = sv.selectAll("*:not(*)").data(t).enter().append("line").attr({
+					"x1": (x, i) => Xlinear(i) - 10,
+					"y1": (x, i) => Ylinear(parseInt(x.Sal)),
+					"x2": (x, i) => Xlinear((i==t.length-1)?i:(i + 1)) - 10,
+					"y1": (x, i) => Ylinear(parseInt(t[(i==t.length-1)?i:(i + 1)].Sal)),
+				}).style({
+					"stroke": (x, i) =>colors[i],
+					"stroke-width": 5,
+				});
+
+				//加标签
+				let saltext = sv.selectAll("text").data(t).enter().append("text").attr({
+					"x": (x, i) => {
+						let dev = i == 0 ? 0 : (Math.abs(parseInt(x.Sal) - parseInt(t[i - 1].Sal)) < 10 ? 10 : 0);
+						return(Xlinear(i) + dev);
+					},
+					"y": (x, i) => Ylinear(parseInt(x.Sal)) - 20
+				}).style({
+					"text-anchor": "middle",
+					"font-size": "11pt",
+					"fill": "black",
+				}).text((x) => "$" + x.Sal + ".00");
+
+				drawXYlineText(sv, svgSize, margin, cell, Xlinear, Ylinear, t);
+			}
+
+			function drawCircle(t) {
+				let svgSize = {
+					w: 1200,
+					h: 800
+				};
+				let margin = {
+					top: 100,
+					bottom: 40,
+					left: 50,
+					right: 50
+				};
+				let sv = d3.select("#bg").append("svg").attr({
+					"width": svgSize.w,
+					"height": svgSize.h
+				});
+				let cell = 60;
+				let colors = colorChange2("FF0011", "9933CC", "0099FF", t.length);
+				//				let colors = colorChange2("BBEEFF",  "0099FF","000066", t.length);
+				let maxY = d3.max(t, (x) => parseInt(x.Sal));
+				let Ylinear = d3.scale.linear().domain([0, maxY + 1000]).range([svgSize.h - margin.bottom - 50, margin.top]);
+				let Xlinear = d3.scale.linear().domain([0, t.length]).range([margin.left + cell, svgSize.w - margin.right - 50]);
+				let colorsvalue = [];
+				t.forEach((x, i) => colorsvalue.push({
+					index: i,
+					sal: parseInt(x.Sal)
+				}));
+				colorsvalue.sort((a, b) => {
+					return Math.sign(b.sal - a.sal);
+				});
+				colorsvalue.forEach((x, i) => x.color = colors[i]);
+				colorsvalue.sort((a, b) => {
+					return Math.sign(a.index - b.index);
+				});
+				//				let height = d3.max(t, (x) => parseInt(x.Sal)) * 0.16 + margin.top;
+				let cirs = sv.selectAll("circle").data(t).enter().append("circle").attr({
+					"cx": (x, i) => Xlinear(i),
+					"cy": (x, i) => Ylinear(parseInt(x.Sal)),
+					"r": (x, i) => parseInt(x.Sal) * 0.03
+				}).style({
+					"display": "block",
+					"fill": (x, i) => colorsvalue[i].color,
+					"white-space": "nowrap",
+					"fill-opacity": "0.6",
+					"transform-origin": " 0px 0px 0px"
+				});
+				//加标签
+				let saltext = sv.selectAll("text").data(t).enter().append("text").attr({
+					"x": (x, i) => {
+						let dev = i == 0 ? 0 : (Math.abs(parseInt(x.Sal) - parseInt(t[i - 1].Sal)) < 10 ? 10 : 0);
+						return(Xlinear(i) + dev);
+					},
+					"y": (x, i) => Ylinear(parseInt(x.Sal)) + (parseInt(x.Sal) > 100 ? 5 : -5)
+				}).style({
+					"text-anchor": "middle",
+					"font-size": "11pt",
+					"fill": "black",
+				}).text((x) => "$" + x.Sal + ".00");
+
+				drawXYlineText(sv, svgSize, margin, cell, Xlinear, Ylinear, t);
+			}
+
+			function drawXYlineText(sv, svgSize, margin, cell, Xlinear, Ylinear, t) {
+				let maxY = d3.max(t, (x) => parseInt(x.Sal));
+
+				let ayis = d3.svg.axis().scale(Ylinear).orient("left").ticks(8).tickFormat(d3.format("d"));
+				let Yline = sv.append("g").attr("class", "axis")
+					.attr('transform', "translate(" + (margin.left) + "," + (0) + ")")
+					.style({
+						"fill": "none",
+						"stroke": "#000",
+						"stroke-width": 2,
+					}).call(ayis);
+				let enames = [];
+				enames.push("");
+				let index = [];
+				index.push(cell);
+				t.forEach((x, i) => {
+					enames.push(x.Ename);
+					index.push(Xlinear(i))
+				});
+				enames.push("");
+				index.push(svgSize.w - 100);
+				let Xnamelinear = d3.scale.ordinal().domain(enames).range(index);
+				let axis = d3.svg.axis().scale(Xnamelinear).orient("bottom");
+				let Xline = sv.append("g")
+					.attr('transform', "translate(" + (margin.left - cell) + "," + (svgSize.h - margin.bottom - 50) + ")")
+					.style({
+						"fill": "none",
+						"stroke": "#000",
+						"stroke-width": 2,
+					}).call(axis);
+				//绘制轴线
 			}
 
 			//将对象解析成key=value

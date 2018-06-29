@@ -15,18 +15,18 @@ function colorChange(c1, c2, c3, count) {
 	let c = hexToRgb(c3);
 	let colors = [];
 	for(let i = 0; i < parseInt(count / 2); i++) {
-		let stepr1 = (a[0] - b[0]) / (count / 2);
-		let stepg1 = (a[1] - b[1]) / (count / 2);
-		let stepb1 = (a[2] - b[2]) / (count / 2);
+		let stepr1 = (a[0] - b[0]) / parseInt(count / 2);
+		let stepg1 = (a[1] - b[1]) / parseInt(count / 2);
+		let stepb1 = (a[2] - b[2]) / parseInt(count / 2);
 		let numr1 = b[0] + stepr1 * i;
 		let numg1 = b[1] + stepg1 * i;
 		let numb1 = b[2] + stepb1 * i;
 		colors.push(rgbToHex(numr1, numg1, numb1));
 	}
 	for(let j = 0; j <= parseInt(count / 2); j++) {
-		let stepr2 = (b[0] - c[0]) / (count / 2);
-		let stepg2 = (b[1] - c[1]) / (count / 2);
-		let stepb2 = (b[2] - c[2]) / (count / 2);
+		let stepr2 = (b[0] - c[0]) / parseInt(count / 2);
+		let stepg2 = (b[1] - c[1]) / parseInt(count / 2);
+		let stepb2 = (b[2] - c[2]) / parseInt(count / 2);
 		let numr2 = c[0] + stepr2 * j;
 		let numg2 = c[1] + stepg2 * j;
 		let numb2 = c[2] + stepb2 * j;
@@ -42,18 +42,18 @@ function colorChange2(c1, c2, c3, count) {
 	let c = hexToRgb(c3);
 	let colors = [];
 	for(let i = 0; i < parseInt(count / 2); i++) {
-		let stepr1 = (b[0] - a[0]) / (count / 2);
-		let stepg1 = (b[1] - a[1]) / (count / 2);
-		let stepb1 = (b[2] - a[2]) / (count / 2);
+		let stepr1 = (b[0] - a[0]) / parseInt(count / 2);
+		let stepg1 = (b[1] - a[1]) / parseInt(count / 2);
+		let stepb1 = (b[2] - a[2]) / parseInt(count / 2);
 		let numr1 = a[0] + stepr1 * i;
 		let numg1 = a[1] + stepg1 * i;
 		let numb1 = a[2] + stepb1 * i;
 		colors.push(rgbToHex(numr1, numg1, numb1));
 	}
 	for(let j = 0; j <= parseInt(count / 2); j++) {
-		let stepr2 = (c[0] - b[0]) / (count / 2);
-		let stepg2 = (c[1] - b[1]) / (count / 2);
-		let stepb2 = (c[2] - b[2]) / (count / 2);
+		let stepr2 = (c[0] - b[0]) / parseInt(count / 2);
+		let stepg2 = (c[1] - b[1]) / parseInt(count / 2);
+		let stepb2 = (c[2] - b[2]) / parseInt(count / 2);
 		let numr2 = b[0] + stepr2 * j;
 		let numg2 = b[1] + stepg2 * j;
 		let numb2 = b[2] + stepb2 * j;
