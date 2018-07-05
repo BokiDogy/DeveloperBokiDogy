@@ -81,7 +81,7 @@
 				//画条形
 				let rect = sv.selectAll("rect").data(sals).enter().append("rect").on({
 					"mouseover": (x, i) => mover(i),
-					"mouseout": (x, i) => mout(x,i)
+					"mouseout": (x, i) => mout(x, i)
 				}).attr({
 					"class": (x, i) => "rect" + i,
 					"x": (x, i) => cell * (i + 1) - rectwidth / 2 + margin.left,
@@ -180,12 +180,11 @@
 				})
 
 				var mover = function(i) {
-					d3.selectAll(`.rect${i}`).transition().duration(200).delay((d, i) =>100).style("fill", duibicolors[i]).style("cursor", "pointer");
-					d3.selectAll(`.name${i}`).transition().duration(200).delay((d, i) =>100).style("fill", colors[i]).style("cursor", "pointer");
+					d3.selectAll(`.rect${i}`).transition().duration(200).delay((d, i) => 100).style("fill", duibicolors[i]).style("cursor", "pointer");
+					d3.selectAll(`.name${i}`).transition().duration(200).delay((d, i) => 100).style("fill", colors[i]).style("cursor", "pointer");
 					//					.transition().duration(400).ease("bounce").delay((d, i) => 200)
 					//					sv.selectAll(".lat").transition().duration(400).ease("bounce").delay((d, i) => 200).attr("fill", (d, i) => colors[i]);
 				}
-
 				var mout = function(d, i) {
 					d3.selectAll(`.rect${i}`).transition().duration(200).delay((d, i) => 100).style("fill", colors[i]);
 					d3.selectAll(`.name${i}`).transition().duration(200).delay((d, i) => 100).style("fill", d.Sal < 100 ? colors[i] : duibicolors[i]);

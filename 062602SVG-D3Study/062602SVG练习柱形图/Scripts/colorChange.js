@@ -66,10 +66,11 @@ function colorChange2(c1, c2, c3, count) {
 function getComplycolor(hex) {
 	let hsl = hex2hsl(hex);
 	let result = {
-		h: parseInt((hsl.h -120) % 360),
-//		l: 1 - hsl.l,
-		l:hsl.l>0.5?(( 1 - hsl.l)/2):(1-hsl.l/2),
-//		s: hsl.s
+		h: parseInt((hsl.h - 120) % 360),
+		//		l: 1 - hsl.l,
+				l:hsl.l>0.5?(( 1 - hsl.l)/2):(1-hsl.l/2),
+		//l: Math.abs(hsl.l - 0.5) < 0.02 ? (Math.abs(hsl.l - 0.5)) : (hsl.l>0.5?(( 1 - hsl.l)/2):(1-hsl.l/2)),
+		//		s: hsl.s
 		s: 1
 	}
 	return hsl2hex(result);
@@ -78,9 +79,9 @@ function getComplycolor(hex) {
 function getHucaise(hex) {
 	let hsl = hex2hsl(hex);
 	let result = {
-		h: parseInt((hsl.h +180) % 360),
-//		l: 1 - hsl.l,
-		l:hsl.l>0.5?(( 1 - hsl.l)/2):(1-hsl.l/2),
+		h: parseInt((hsl.h + 180) % 360),
+		//		l: 1 - hsl.l,
+		l: hsl.l > 0.5 ? ((1 - hsl.l) / 2) : (1 - hsl.l / 2),
 		s: hsl.s
 	}
 	return hsl2hex(result);
@@ -110,7 +111,7 @@ function hex2hsl(hex) {
 		g: rgbs[1],
 		b: rgbs[2]
 	};
-	let hsl = rgbToHsl(rgb.r,rgb.b,rgb.b);
+	let hsl = rgbToHsl(rgb.r, rgb.b, rgb.b);
 	return hsl;
 }
 
@@ -162,7 +163,6 @@ function rgbToHsl(r, g, b) {
 	}
 	return hsl;
 }
-
 
 /**
  * HSL颜色值转换为RGB. 
