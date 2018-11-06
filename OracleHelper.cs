@@ -1,5 +1,4 @@
-﻿using AttManageProject.Model;
-using Oracle.ManagedDataAccess.Client;
+﻿using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,18 +9,41 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace AttManageProject.DAL
+namespace TrainLine.DAL
 {
     public class OracleHelper
 
     {
-        
-        //private string constr ="Data source=alias;User id=scott;Password=orcl";
+        //private string constr = @"Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))
+        //      (CONNECT_DATA=(SERVICE_NAME=orcl)));Persist Security Info=True;User ID=scott;Password=orcl;";
+        //private string constr = System.Configuration.ConfigurationManager.ConnectionStrings["ddoaDB"].ToString();
+        private string constr = System.Configuration.ConfigurationManager.ConnectionStrings["wxbDB"].ToString();
+        //private string constr =@"Data source=alias;User id=scott;Password=orcl";
+        //private string constr = System.Configuration.ConfigurationManager.ConnectionStrings["command"].ToString();
+
+        public string Constr
+        {
+            get
+            {
+                return constr;
+            }
+
+            set
+            {
+                constr = value;
+            }
+        }
+        public OracleHelper() { }
+        public OracleHelper(string constr)
+        {
+            this.Constr = constr;
+        }
+        //private string constr = "Data source=alias;User id=scott;Password=orcl";
         private OracleConnection GetOracleConnection()
         {
-            return new OracleConnection(constr);
+            return new OracleConnection(Constr);
         }
-        protected int ExecuteNonSelect(string sql, List<OracleParameter> paras)
+        public int ExecuteNonSelect(string sql, List<OracleParameter> paras)
         {
             OracleConnection con = GetOracleConnection();
             OracleCommand cmd = new OracleCommand(sql, con);
@@ -38,7 +60,7 @@ namespace AttManageProject.DAL
             con.Close();
             return count;
         }
-        protected OracleDataReader ExecuteSelect(string sql, List<OracleParameter> paras)
+        public OracleDataReader ExecuteSelect(string sql, List<OracleParameter> paras)
         {
             OracleConnection con = GetOracleConnection();
             OracleCommand cmd = new OracleCommand(sql, con);
@@ -192,33 +214,21 @@ namespace AttManageProject.DAL
         protected object getObjValueInColumns(IDataReader dr, Dictionary<string, string> columns, Type pt)
         {
             List<PropertyInfo> ptprs = pt.GetTypeInfo().DeclaredProperties.ToList();
-            //List<PropertyInfo> ptprs2 = pt.GetProperties().ToList();
             //string pfullname = Regex.Split((pt.FullName + "," + pt.Assembly.ManifestModule.Name), ".dll")[0];
             object obj = pt.Assembly.CreateInstance(pt.FullName);
-            List<Attribute> xattrs = pt.GetCustomAttributes().ToList();
             foreach (PropertyInfo p in ptprs)
             {
                 Type ptt = p.PropertyType;
-                List<object> pattrs = p.GetCustomAttributes(true).ToList();
-                string pname = p.Name.ToLower();
-                foreach (object pnattr in pattrs)
-                {
-                    DBAttrs attr = pnattr as DBAttrs;
-                    if (attr != null)
-                    {
-                        pname=attr.CloumnName;
-                    }
-                }
-                bool isincolumns = isKey(pname, columns);
+                bool isincolumns = isKey(p.Name.ToUpper(), columns);
                 if (isincolumns)
                 {
-                    if (dr[pname].GetType().Name.ToLower() == "dbnull")
+                    if (dr[p.Name.ToLower()].GetType().Name.ToLower() == "dbnull")
                     {
                         continue;
                     }
                     else
                     {
-                        object value = GetObjByType(ptt.Name, dr[pname]);
+                        object value = GetObjByType(ptt.Name, dr[p.Name.ToLower()]);
                         p.SetValue(obj, value);
                     }
                 }
