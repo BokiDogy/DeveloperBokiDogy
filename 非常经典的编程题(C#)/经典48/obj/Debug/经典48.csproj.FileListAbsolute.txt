@@ -3,3 +3,6 @@ F:\net全栈工程师\练习\020602非常经典的JAVA编程题全集\经典48\b
 F:\net全栈工程师\练习\020602非常经典的JAVA编程题全集\经典48\bin\Debug\经典48.pdb
 F:\net全栈工程师\练习\020602非常经典的JAVA编程题全集\经典48\obj\Debug\经典48.exe
 F:\net全栈工程师\练习\020602非常经典的JAVA编程题全集\经典48\obj\Debug\经典48.pdb
+F:\vsgit\DeveloperBokiDogy\非常经典的编程题(C#)\经典48\bin\Debug\经典48.exe.config
+F:\vsgit\DeveloperBokiDogy\非常经典的编程题(C#)\经典48\obj\Debug\经典48.exe
+F:\vsgit\DeveloperBokiDogy\非常经典的编程题(C#)\经典48\obj\Debug\经典48.pdb
