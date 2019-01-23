@@ -28,13 +28,18 @@ namespace 经典01
         {
             int sum = 0, a = 1, b = 1;
             Console.WriteLine($"第1个月兔子对数为:1\n第2个月兔子对数为:1");
-            for (int i = 3; i <= 12; i++)
+            for (int m = 3; m <= 12; m++)
             {
                 sum = a + b;
                 a = b;
                 b = sum;
-                Console.WriteLine($"第{i}个月兔子对数为:{sum}");
+                Console.WriteLine($"第{m}个月兔子对数为:{sum}");
             }
+            int[] arr = new int[] { 4, 8, 32, -5, -6, 0 };
+            Console.WriteLine(Convert.ToSingle(arr.ToList().Count(q => q > 0)) / arr.Length);
+            Console.WriteLine(Convert.ToSingle(arr.ToList().Count(q => q < 0)) / arr.Length);
+            Console.WriteLine(Convert.ToSingle(arr.ToList().Count(q => q == 0)) / arr.Length);
+
             Console.ReadLine();
         }
     }

@@ -4,3 +4,9 @@ F:\net全栈工程师\练习\020602非常经典的JAVA编程题全集\经典01\b
 F:\net全栈工程师\练习\020602非常经典的JAVA编程题全集\经典01\obj\Debug\经典01.csprojResolveAssemblyReference.cache
 F:\net全栈工程师\练习\020602非常经典的JAVA编程题全集\经典01\obj\Debug\经典01.exe
 F:\net全栈工程师\练习\020602非常经典的JAVA编程题全集\经典01\obj\Debug\经典01.pdb
+F:\vsgit\DeveloperBokiDogy\非常经典的编程题(C#)\经典01\bin\Debug\经典01.exe.config
+F:\vsgit\DeveloperBokiDogy\非常经典的编程题(C#)\经典01\obj\Debug\经典01.exe
+F:\vsgit\DeveloperBokiDogy\非常经典的编程题(C#)\经典01\obj\Debug\经典01.pdb
+F:\vsgit\DeveloperBokiDogy\非常经典的编程题(C#)\经典01\bin\Debug\经典01.exe
+F:\vsgit\DeveloperBokiDogy\非常经典的编程题(C#)\经典01\bin\Debug\经典01.pdb
+F:\vsgit\DeveloperBokiDogy\非常经典的编程题(C#)\经典01\obj\Debug\经典01.csprojResolveAssemblyReference.cache
